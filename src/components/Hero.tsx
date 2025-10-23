@@ -1,9 +1,68 @@
 import { Button } from "./ui/button";
 import { ArrowDown, Github, Linkedin, Mail, Code, Database, Cpu, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 import profileImage from "figma:asset/44a7ed3e2fe6c72ade9f68d206e281d71bbeb1be.png";
 
 export function Hero() {
+  const [titleText, setTitleText] = useState("");
+  const [nameText, setNameText] = useState("");
+  const [roleText, setRoleText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  
+  const fullTitle = "HAY! I'M";
+  const fullName = "Aisyah Nabila";
+  const fullRole = "I'M A WEB DEVELOPER & SYSTEM ANALYST";
+
+  useEffect(() => {
+    // Typing effect untuk title
+    let titleIndex = 0;
+    const titleInterval = setInterval(() => {
+      if (titleIndex < fullTitle.length) {
+        setTitleText(fullTitle.slice(0, titleIndex + 1));
+        titleIndex++;
+      } else {
+        clearInterval(titleInterval);
+        // Mulai typing nama setelah title selesai
+        setTimeout(() => {
+          let nameIndex = 0;
+          const nameInterval = setInterval(() => {
+            if (nameIndex < fullName.length) {
+              setNameText(fullName.slice(0, nameIndex + 1));
+              nameIndex++;
+            } else {
+              clearInterval(nameInterval);
+              // Mulai typing role setelah nama selesai
+              setTimeout(() => {
+                let roleIndex = 0;
+                const roleInterval = setInterval(() => {
+                  if (roleIndex < fullRole.length) {
+                    setRoleText(fullRole.slice(0, roleIndex + 1));
+                    roleIndex++;
+                  } else {
+                    clearInterval(roleInterval);
+                    // Stop cursor blinking setelah selesai
+                    setTimeout(() => setShowCursor(false), 500);
+                  }
+                }, 50);
+              }, 300);
+            }
+          }, 100);
+        }, 300);
+      }
+    }, 150);
+
+    // Cursor blinking
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
+
+    return () => {
+      clearInterval(titleInterval);
+      clearInterval(cursorInterval);
+    };
+  }, []);
+  
   const scrollToContact = () => {
     try {
       const element = document.getElementById('contact');
@@ -129,27 +188,52 @@ export function Hero() {
             <div className="space-y-6">
               
               <motion.h1 
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight min-h-[200px]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                <span className="block">HAY! I'M</span>
-                <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-secondary via-primary to-accent animate-gradient-x">
-                  Aisyah Nabila
+                <span className="block mb-4">
+                  {titleText}
+                  {titleText.length < fullTitle.length && showCursor && (
+                    <span className="inline-block w-1 h-14 bg-white ml-2 animate-pulse"></span>
+                  )}
+                </span>
+                <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-secondary via-primary to-accent">
+                  {nameText}
+                  {nameText.length > 0 && nameText.length < fullName.length && showCursor && (
+                    <span className="inline-block w-1 h-16 bg-gradient-to-r from-secondary via-primary to-accent ml-1"></span>
+                  )}
                   <span className="absolute -inset-1 bg-gradient-to-r from-secondary/20 via-primary/20 to-accent/20 blur-2xl -z-10"></span>
                 </span>
               </motion.h1>
               
               <motion.h2 
-                className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-200"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-200 min-h-[120px]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                I'M A <span className="text-primary drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">WEB DEVELOPER</span> &
-                <br />
-                <span className="text-secondary drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]">SYSTEM ANALYST</span>
+                {roleText.includes("WEB DEVELOPER") ? (
+                  <>
+                    I'M A <span className="text-primary drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">WEB DEVELOPER</span>
+                    {roleText.includes("&") && (
+                      <>
+                        {" "}&<br />
+                        <span className="text-secondary drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]">
+                          {roleText.split("& ")[1] || ""}
+                        </span>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {roleText}
+                  </>
+                )}
+                {roleText.length > 0 && roleText.length < fullRole.length && showCursor && (
+                  <span className="inline-block w-1 h-10 bg-secondary ml-1 animate-pulse"></span>
+                )}
               </motion.h2>
               
               <motion.p 
