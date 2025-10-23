@@ -180,9 +180,9 @@ export function Hero() {
               <Button 
                 variant="outline" 
                 onClick={scrollToProjects}
-                className="border-2 border-secondary/50 text-white hover:bg-secondary/10 hover:border-secondary backdrop-blur-sm px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+                className="border-2 border-white/80 bg-white/5 text-white hover:bg-white hover:text-slate-900 hover:border-white backdrop-blur-sm px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
               >
-                View Portfolio
+                <span className="font-bold">View Portfolio</span>
               </Button>
             </motion.div>
 
@@ -330,18 +330,22 @@ export function Hero() {
         >
           <div className="flex justify-center gap-4 mb-6 p-3 bg-white/5 backdrop-blur-md rounded-full border border-white/10">
             {[
-              { icon: Github, color: "secondary" },
-              { icon: Linkedin, color: "primary" },
-              { icon: Mail, color: "accent" }
+              { icon: Github, color: "secondary", url: "https://github.com/aisyahnabila", label: "GitHub" },
+              { icon: Linkedin, color: "primary", url: "https://linkedin.com/in/aisyah-nabila-zahra-0a6046226/", label: "LinkedIn" },
+              { icon: Mail, color: "accent", url: "mailto:your.email@example.com", label: "Email" }
             ].map((social, index) => (
-              <motion.div
+              <motion.a
                 key={index}
+                href={social.url}
+                target={social.icon === Mail ? "_self" : "_blank"}
+                rel={social.icon === Mail ? "" : "noopener noreferrer"}
+                aria-label={social.label}
                 className={`text-white/80 hover:text-${social.color} transition-all duration-300 cursor-pointer p-2 rounded-full hover:bg-white/10`}
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
                 <social.icon className="h-5 w-5" />
-              </motion.div>
+              </motion.a>
             ))}
           </div>
           

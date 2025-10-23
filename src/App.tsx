@@ -9,13 +9,18 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 
 export default function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true); // Default: dark mode
 
   useEffect(() => {
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    // Cek localStorage, jika tidak ada maka default dark mode
+    const savedMode = localStorage.getItem('darkMode');
+    const isDarkMode = savedMode === null ? true : savedMode === 'true';
+    
     setIsDark(isDarkMode);
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
   }, []);
 
