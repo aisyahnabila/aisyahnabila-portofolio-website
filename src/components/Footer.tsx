@@ -21,7 +21,7 @@ export function Footer() {
           {/* Brand & Description */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-primary">
-              Your Portfolio
+              Aisyah Nabila Portofolio
             </h3>
             <p className="text-muted-foreground leading-relaxed">
               Web Developer & System Analyst passionate about creating innovative 
@@ -70,18 +70,33 @@ export function Footer() {
           <div className="space-y-4">
             <h4 className="font-semibold text-foreground">Connect</h4>
             <div className="flex space-x-4">
-              <div className="flex items-center justify-center w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors cursor-pointer">
+              <a 
+                href="https://github.com/aisyahnabila"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="flex items-center justify-center w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors cursor-pointer"
+              >
                 <Github className="h-5 w-5" />
-              </div>
-              <div className="flex items-center justify-center w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors cursor-pointer">
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/aisyah-nabila-zahra-0a6046226/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="flex items-center justify-center w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors cursor-pointer"
+              >
                 <Linkedin className="h-5 w-5" />
-              </div>
-              <div className="flex items-center justify-center w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors cursor-pointer">
-                <Mail className="h-5 w-5" />
-              </div>
+              </a>
+              <a 
+                href="mailto:aisyahnabilaz514@gmail.com"
+                aria-label="Email"
+                className="flex items-center justify-center w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg transition-colors cursor-pointer"
+              >
+              </a>
             </div>
             <div className="text-muted-foreground space-y-1">
-              <p>your.email@example.com</p>
+              <p>aisyahnabilaz514@gmail.com</p>
               <p>Available for remote work</p>
             </div>
           </div>
@@ -90,13 +105,8 @@ export function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-border mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-center sm:text-left">
-            © {currentYear} Your Portfolio. All rights reserved.
+            © {currentYear} Aisyah Nabila. All rights reserved.
           </p>
-          <div className="flex items-center gap-1 text-muted-foreground">
-            <span>Made with</span>
-            <Heart className="h-4 w-4 text-red-500 fill-red-500" />
-            <span>and modern web technologies</span>
-          </div>
         </div>
       </div>
     </footer>
