@@ -66,7 +66,6 @@ export function About() {
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-2xl blur-xl"></div>
               <div className="relative p-8 bg-card/50 backdrop-blur-md rounded-2xl border border-border/50">
                 <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                  <Sparkles className="h-6 w-6 text-secondary" />
                   My Journey
                 </h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed">

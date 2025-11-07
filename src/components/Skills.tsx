@@ -15,8 +15,8 @@ export function Skills() {
       glowColor: "from-blue-500/50 to-blue-500/30",
       icon: Code,
       skills: [
-        "React", "TypeScript", "Next.js", "Vue.js", "HTML5", "CSS3", 
-        "Tailwind CSS", "SASS", "JavaScript ES6+", "Responsive Design"
+        "React", "TypeScript", "Next.js", "Vue.js", "HTML5", "CSS3",
+        "Tailwind CSS", "JavaScript", "Responsive Design"
       ]
     },
     {
@@ -29,8 +29,7 @@ export function Skills() {
       glowColor: "from-emerald-500/50 to-emerald-500/30",
       icon: Server,
       skills: [
-        "Node.js", "Python", "Express.js", "Django", "REST APIs", 
-        "GraphQL", "Microservices", "Server Architecture", "API Design"
+        "Node.js", "Python", "Express.js", "REST APIs", "Microservices", "API Design"
       ]
     },
     {
@@ -43,7 +42,7 @@ export function Skills() {
       glowColor: "from-purple-500/50 to-purple-500/30",
       icon: Database,
       skills: [
-        "PostgreSQL", "MySQL", "MongoDB", "Redis", "Database Design", 
+        "PostgreSQL", "MySQL", "MongoDB", "Database Design",
         "Query Optimization", "Data Modeling", "Cloud Storage"
       ]
     },
@@ -57,9 +56,9 @@ export function Skills() {
       glowColor: "from-orange-500/50 to-orange-500/30",
       icon: LineChart,
       skills: [
-        "Business Process Analysis", "Requirements Gathering", "System Design", 
-        "UML Diagrams", "Workflow Optimization", "Technical Documentation", 
-        "Stakeholder Communication", "Gap Analysis"
+        "Business Process Analysis", "Requirements Gathering", "System Design",
+        "UML Diagrams", "Workflow Optimization", "Technical Documentation",
+        "Stakeholder Communication"
       ]
     },
     {
@@ -72,7 +71,7 @@ export function Skills() {
       glowColor: "from-cyan-500/50 to-cyan-500/30",
       icon: Wrench,
       skills: [
-        "Git", "Docker", "AWS", "Linux", "Figma", "Jira", "Agile/Scrum", 
+        "Git", "Docker", "Linux", "Figma", "Jira", "Agile/Scrum",
         "CI/CD", "Testing Frameworks", "Performance Monitoring"
       ]
     }
@@ -88,7 +87,7 @@ export function Skills() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div 
+        <motion.div
           className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +97,7 @@ export function Skills() {
             Skills & Technologies
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto px-4 py-4">
-            Here are the technologies and skills I use to bring ideas to life and 
+            Here are the technologies and skills I use to bring ideas to life and
             optimize systems for better performance.
           </p>
         </motion.div>
@@ -116,11 +115,11 @@ export function Skills() {
             >
               {/* Glowing border effect */}
               <div className={`absolute -inset-0.5 bg-gradient-to-r ${category.glowColor} rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500`}></div>
-              
+
               <Card className={`relative h-full bg-white dark:bg-slate-900/90 backdrop-blur-md border-2 border-slate-200 dark:border-slate-700 ${category.hoverBorder} hover:shadow-2xl transition-all duration-300 overflow-hidden`}>
                 {/* Shine effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/10 to-transparent"></div>
-                
+
                 <CardHeader className="pb-4">
                   <div className="flex items-center gap-3">
                     <div className={`p-2.5 rounded-lg ${category.bgColor} border ${category.borderColor} group-hover:scale-110 transition-transform duration-300`}>
@@ -142,7 +141,7 @@ export function Skills() {
                         transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
                         whileHover={{ scale: 1.05 }}
                       >
-                        <Badge 
+                        <Badge
                           variant="secondary"
                           className={`text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-700 ${category.hoverBorder} transition-all duration-200 cursor-default px-3 py-1`}
                         >
@@ -157,28 +156,6 @@ export function Skills() {
           ))}
         </div>
 
-        <motion.div 
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <div className="relative inline-block">
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-emerald-500/20 to-purple-500/20 rounded-full blur-xl"></div>
-            <div className="relative p-6 sm:p-8 bg-white dark:bg-slate-900/90 backdrop-blur-md rounded-2xl border-2 border-slate-200 dark:border-slate-700 shadow-xl">
-              <h3 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white mb-3 flex items-center justify-center gap-2 flex-wrap">
-                <Sparkles className="h-5 w-5 text-emerald-500" />
-                <span>Always Learning</span>
-              </h3>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl px-2">
-                Technology evolves rapidly, and I'm committed to continuous learning. 
-                Currently exploring cloud architecture, AI/ML integration, and advanced 
-                system optimization techniques.
-              </p>
-            </div>
-          </div>
-        </motion.div>
       </div>
 
       <style jsx>{`

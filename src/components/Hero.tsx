@@ -5,52 +5,24 @@ import { useState, useEffect } from "react";
 import profileImage from "figma:asset/44a7ed3e2fe6c72ade9f68d206e281d71bbeb1be.png";
 
 export function Hero() {
-  const [titleText, setTitleText] = useState("");
-  const [nameText, setNameText] = useState("");
   const [roleText, setRoleText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
-  
-  const fullTitle = "HAY! I'M";
-  const fullName = "Aisyah Nabila";
-  const fullRole = "I'M A WEB DEVELOPER & SYSTEM ANALYST";
+
+  const fullRole = "WEB DEVELOPER & SYSTEM ANALYST";
 
   useEffect(() => {
-    // Typing effect untuk title
-    let titleIndex = 0;
-    const titleInterval = setInterval(() => {
-      if (titleIndex < fullTitle.length) {
-        setTitleText(fullTitle.slice(0, titleIndex + 1));
-        titleIndex++;
+    // Typing effect untuk role saja
+    let roleIndex = 0;
+    const roleInterval = setInterval(() => {
+      if (roleIndex < fullRole.length) {
+        setRoleText(fullRole.slice(0, roleIndex + 1));
+        roleIndex++;
       } else {
-        clearInterval(titleInterval);
-        // Mulai typing nama setelah title selesai
-        setTimeout(() => {
-          let nameIndex = 0;
-          const nameInterval = setInterval(() => {
-            if (nameIndex < fullName.length) {
-              setNameText(fullName.slice(0, nameIndex + 1));
-              nameIndex++;
-            } else {
-              clearInterval(nameInterval);
-              // Mulai typing role setelah nama selesai
-              setTimeout(() => {
-                let roleIndex = 0;
-                const roleInterval = setInterval(() => {
-                  if (roleIndex < fullRole.length) {
-                    setRoleText(fullRole.slice(0, roleIndex + 1));
-                    roleIndex++;
-                  } else {
-                    clearInterval(roleInterval);
-                    // Stop cursor blinking setelah selesai
-                    setTimeout(() => setShowCursor(false), 500);
-                  }
-                }, 50);
-              }, 300);
-            }
-          }, 100);
-        }, 300);
+        clearInterval(roleInterval);
+        // Stop cursor blinking setelah selesai
+        setTimeout(() => setShowCursor(false), 500);
       }
-    }, 150);
+    }, 50);
 
     // Cursor blinking
     const cursorInterval = setInterval(() => {
@@ -58,11 +30,11 @@ export function Hero() {
     }, 500);
 
     return () => {
-      clearInterval(titleInterval);
+      clearInterval(roleInterval);
       clearInterval(cursorInterval);
     };
   }, []);
-  
+
   const scrollToContact = () => {
     try {
       const element = document.getElementById('contact');
@@ -86,7 +58,7 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-[#0a0e27] dark:via-[#0f172a] dark:to-[#000000]">
+    <section id="home" className="relative min-h-[600px] lg:min-h-[800px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-[#0a0e27] dark:via-[#0f172a] dark:to-[#000000]">
       {/* Animated Mesh Gradient Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 opacity-30 dark:opacity-30">
@@ -129,13 +101,13 @@ export function Hero() {
 
       {/* Floating Tech Icons with enhanced animations */}
       <div className="absolute inset-0 z-30 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute top-20 left-10"
-          animate={{ 
+          animate={{
             y: [0, -20, 0],
             rotate: [0, 10, 0],
           }}
-          transition={{ 
+          transition={{
             duration: 4,
             repeat: Infinity,
             ease: "easeInOut"
@@ -143,13 +115,13 @@ export function Hero() {
         >
           <Code className="h-16 w-16 text-secondary opacity-20 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
         </motion.div>
-        <motion.div 
+        <motion.div
           className="absolute top-40 right-16"
-          animate={{ 
+          animate={{
             y: [0, 20, 0],
             rotate: [0, -10, 0],
           }}
-          transition={{ 
+          transition={{
             duration: 5,
             repeat: Infinity,
             ease: "easeInOut"
@@ -157,13 +129,13 @@ export function Hero() {
         >
           <Database className="h-12 w-12 text-primary opacity-30 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
         </motion.div>
-        <motion.div 
+        <motion.div
           className="absolute bottom-32 left-20"
-          animate={{ 
+          animate={{
             y: [0, -15, 0],
             rotate: [0, 15, 0],
           }}
-          transition={{ 
+          transition={{
             duration: 3.5,
             repeat: Infinity,
             ease: "easeInOut"
@@ -175,50 +147,40 @@ export function Hero() {
 
       {/* Main Content Container */}
       <div className="relative z-40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-10 sm:py-16 lg:py-20">
-          
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-12 sm:py-16 lg:py-20">
+
           {/* Left Side - Text Content with glassmorphism */}
-          <motion.div 
+          <motion.div
             className="text-left order-2 lg:order-1 space-y-6 lg:space-y-8"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
             <div className="space-y-4 sm:space-y-6">
-              
-              <motion.h1 
+
+              <motion.h1
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-tight"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                <span className="block mb-2 sm:mb-4">
-                  {titleText}
-                  {titleText.length < fullTitle.length && showCursor && (
-                    <span className="inline-block w-0.5 sm:w-1 h-10 sm:h-14 bg-slate-900 dark:bg-white ml-1 sm:ml-2 animate-pulse"></span>
-                  )}
-                </span>
-                <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-blue-500 to-green-500 dark:from-secondary dark:via-primary dark:to-accent break-words">
-                  {nameText}
-                  {nameText.length > 0 && nameText.length < fullName.length && showCursor && (
-                    <span className="inline-block w-0.5 sm:w-1 h-12 sm:h-16 bg-gradient-to-r from-emerald-500 via-blue-500 to-green-500 dark:from-secondary dark:via-primary dark:to-accent ml-1"></span>
-                  )}
-                  <span className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 via-blue-500/20 to-green-500/20 dark:from-secondary/20 dark:via-primary/20 dark:to-accent/20 blur-2xl -z-10"></span>
+                <span className="relative inline-block text-emerald-600 dark:text-emerald-400 break-words font-extrabold drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]">
+                  Aisyah Nabila
                 </span>
               </motion.h1>
-              
-              <motion.h2 
-                className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-700 dark:text-gray-200"
+
+              <motion.h2
+                className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-700 dark:text-gray-200 min-h-[80px] sm:min-h-[100px] lg:min-h-[120px]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
                 {roleText.includes("WEB DEVELOPER") ? (
                   <>
-                    I'M A <span className="text-blue-600 dark:text-primary drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">WEB DEVELOPER</span>
+                    <span className="text-blue-600 dark:text-primary drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">WEB DEVELOPER</span>
                     {roleText.includes("&") && (
                       <>
-                        {" "}&<br />
+                        {" "}& <br />
                         <span className="text-emerald-600 dark:text-secondary drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]">
                           {roleText.split("& ")[1] || ""}
                         </span>
@@ -234,34 +196,34 @@ export function Hero() {
                   <span className="inline-block w-0.5 sm:w-1 h-6 sm:h-10 bg-emerald-600 dark:bg-secondary ml-1 animate-pulse"></span>
                 )}
               </motion.h2>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-gray-300 max-w-2xl leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                I create robust web applications and analyze complex systems to deliver 
+                I create robust web applications and analyze complex systems to deliver
                 innovative solutions that drive business growth and enhance user experiences.
               </motion.p>
             </div>
 
             {/* Action Buttons with enhanced hover effects */}
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
-              <Button 
+              <Button
                 onClick={scrollToContact}
                 className="group relative bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl shadow-2xl border-0 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
               >
                 <span className="relative z-10">Let's Work Together</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 onClick={scrollToProjects}
                 className="border-2 border-slate-800 dark:border-white/80 bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 hover:border-slate-900 dark:hover:border-white backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
               >
@@ -271,35 +233,35 @@ export function Hero() {
           </motion.div>
 
           {/* Right Side - Profile Photo with 3D effects */}
-          <motion.div 
+          <motion.div
             className="flex justify-center lg:justify-end order-1 lg:order-2 mb-8 lg:mb-0"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="relative group scale-75 sm:scale-90 lg:scale-100">
+            <div className="relative group w-[200px] sm:w-[220px] lg:w-[250px]">
               {/* Animated rings around photo */}
               <div className="absolute inset-0 -z-10">
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 rounded-full border-2 border-secondary/30"
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.1, 1],
                     opacity: [0.3, 0.6, 0.3],
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
                   style={{ transform: 'translate(-10%, -10%)', width: '120%', height: '120%' }}
                 />
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 rounded-full border-2 border-primary/30"
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.15, 1],
                     opacity: [0.3, 0.6, 0.3],
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut",
@@ -308,11 +270,11 @@ export function Hero() {
                   style={{ transform: 'translate(-15%, -15%)', width: '130%', height: '130%' }}
                 />
               </div>
-              
+
               {/* Main Photo Container with glassmorphism */}
-              <motion.div 
+              <motion.div
                 className="relative"
-                whileHover={{ 
+                whileHover={{
                   scale: 1.02,
                   rotateY: 5,
                   rotateX: 5,
@@ -321,44 +283,27 @@ export function Hero() {
                 style={{ perspective: 1000 }}
               >
                 {/* Holographic border effect */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-secondary via-primary to-accent rounded-[2rem] blur-xl opacity-50 group-hover:opacity-75 animate-gradient-xy transition-opacity duration-500"></div>
-                
+                <div className="absolute -inset-2 bg-gradient-to-r from-secondary via-primary to-accent rounded-full blur-xl opacity-50 group-hover:opacity-75 animate-gradient-xy transition-opacity duration-500"></div>
+
                 {/* Glass frame */}
-                <div className="relative p-2 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[2rem] border border-white/20 shadow-2xl">
+                <div className="relative p-2 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-full border border-white/20 shadow-2xl">
                   <img
                     src={profileImage}
                     alt="Professional developer portrait"
-                    className="w-64 h-80 sm:w-80 sm:h-96 lg:w-[22rem] lg:h-[32rem] object-cover rounded-[1.5rem] shadow-2xl"
+                    className="w-full h-auto aspect-square object-cover rounded-full shadow-xl"
                   />
-                  
+
                   {/* Shine effect on hover */}
-                  <div className="absolute inset-0 rounded-[1.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/10 to-transparent"></div>
+                  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/10 to-transparent"></div>
                 </div>
 
-                {/* Floating code tag badge */}
-                <motion.div 
-                  className="absolute -bottom-4 -right-4 px-6 py-3 bg-gradient-to-r from-secondary to-accent rounded-xl backdrop-blur-md border border-white/20 shadow-xl"
-                  animate={{ 
-                    y: [0, -10, 0],
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <div className="flex items-center gap-2">
-                    <Code className="h-5 w-5 text-black" />
-                    <span className="font-mono font-bold text-black">&lt;/&gt;</span>
-                  </div>
-                </motion.div>
               </motion.div>
 
               {/* Decorative particles around photo */}
               {[...Array(8)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-2 h-2 bg-gradient-to-r from-secondary to-primary rounded-full"
+                  className="absolute w-1.5 h-1.5 bg-gradient-to-r from-secondary to-primary rounded-full"
                   style={{
                     left: `${50 + 50 * Math.cos(i * Math.PI / 4)}%`,
                     top: `${50 + 50 * Math.sin(i * Math.PI / 4)}%`,
@@ -379,7 +324,7 @@ export function Hero() {
         </div>
 
         {/* Bottom Section - Social Icons & Scroll with glassmorphism */}
-        <motion.div 
+        <motion.div
           className="hidden lg:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -405,8 +350,8 @@ export function Hero() {
               </motion.a>
             ))}
           </div>
-          
-          <motion.div 
+
+          <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
