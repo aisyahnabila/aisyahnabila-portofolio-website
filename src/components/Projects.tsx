@@ -45,22 +45,18 @@ export function Projects() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 mb-4">
-            <Sparkles className="h-4 w-4 text-primary" />
-            <span className="text-primary tracking-wider uppercase">My Work</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Featured Projects
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Here are some of my recent projects that showcase my skills in web development 
+            Here are some of my recent projects that showcase my skills in web development
             and system analysis. Each project solved real business challenges.
           </p>
         </motion.div>
@@ -78,11 +74,11 @@ export function Projects() {
             >
               {/* Glowing border effect */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-secondary/50 via-primary/50 to-accent/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              
+
               <Card className="relative h-full bg-card/50 backdrop-blur-md border-border/50 overflow-hidden hover:shadow-2xl transition-all duration-300">
                 {/* Shine effect overlay */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none z-10"></div>
-                
+
                 <div className="relative overflow-hidden">
                   <img
                     src={project.image}
@@ -92,8 +88,8 @@ export function Projects() {
                   />
                   {/* Gradient overlay on image */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  <motion.div 
+
+                  <motion.div
                     className="absolute top-4 left-4"
                     whileHover={{ scale: 1.1 }}
                   >
@@ -102,18 +98,18 @@ export function Projects() {
                     </Badge>
                   </motion.div>
                 </div>
-                
+
                 <CardHeader>
                   <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">
                     {project.title}
                   </CardTitle>
                 </CardHeader>
-                
+
                 <CardContent className="space-y-4">
                   <p className="text-muted-foreground leading-relaxed">
                     {project.description}
                   </p>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, techIndex) => (
                       <motion.div
@@ -126,18 +122,18 @@ export function Projects() {
                       </motion.div>
                     ))}
                   </div>
-                  
+
                   <div className="flex gap-3 pt-4">
-                    <Button 
-                      size="sm" 
+                    <Button
+                      size="sm"
                       className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
                       onClick={() => window.open(project.liveLink, '_blank')}
                     >
                       <ExternalLink className="h-4 w-4 mr-2" />
                       Live Demo
                     </Button>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="sm"
                       className="border-border/50 hover:border-primary/50 hover:bg-primary/10 backdrop-blur-sm transition-all duration-300 hover:scale-105"
                       onClick={() => window.open(project.githubLink, '_blank')}
@@ -152,15 +148,15 @@ export function Projects() {
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           className="text-center mt-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="lg"
             className="relative group border-2 border-primary/50 text-primary hover:bg-primary/10 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
           >

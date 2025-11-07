@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { Mail, Phone, MapPin, Send, Sparkles } from "lucide-react";
+import { Mail, MapPin, Send, Sparkles, MessageCircle } from "lucide-react";
 import { motion } from "motion/react";
 
 export function Contact() {
@@ -21,29 +21,25 @@ export function Contact() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 backdrop-blur-sm border border-accent/20 mb-4">
-            <Sparkles className="h-4 w-4 text-accent" />
-            <span className="text-accent tracking-wider uppercase">Let's Talk</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Get In Touch
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Ready to start your next project? Let's discuss how I can help bring your 
+            Ready to start your next project? Let's discuss how I can help bring your
             ideas to life or optimize your existing systems.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
-          <motion.div 
+          <motion.div
             className="space-y-8"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -55,19 +51,19 @@ export function Contact() {
                 Let's Connect
               </h3>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                I'm always interested in hearing about new opportunities, challenging 
-                projects, or just having a conversation about technology and innovation. 
+                I'm always interested in hearing about new opportunities, challenging
+                projects, or just having a conversation about technology and innovation.
                 Feel free to reach out!
               </p>
             </div>
 
             <div className="space-y-6">
               {[
-                { icon: Mail, color: "primary", label: "Email", value: "your.email@example.com" },
-                { icon: Phone, color: "secondary", label: "Phone", value: "+1 (234) 567-8900" },
-                { icon: MapPin, color: "accent", label: "Location", value: "Available for remote work worldwide" }
+                { icon: Mail, color: "primary", label: "Email", value: "aisyahnabilaz514@gmail.com", link: "mailto:aisyahnabilaz514@gmail.com" },
+                { icon: MessageCircle, color: "secondary", label: "WhatsApp", value: "+62 851-5650-5772", link: "https://wa.me/6285156505772" },
+                { icon: MapPin, color: "accent", label: "Location", value: "Available for remote work worldwide", link: null }
               ].map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   className="group flex items-center gap-4"
                   initial={{ opacity: 0, x: -20 }}
@@ -76,36 +72,38 @@ export function Contact() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ x: 10 }}
                 >
-                  <div className={`relative flex items-center justify-center w-14 h-14 bg-${item.color}/10 rounded-xl border border-${item.color}/20 group-hover:border-${item.color}/40 transition-all duration-300 group-hover:scale-110`}>
-                    <item.icon className={`h-6 w-6 text-${item.color}`} />
-                    <div className={`absolute -inset-1 bg-gradient-to-r from-${item.color}/0 to-${item.color}/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300`}></div>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-foreground">{item.label}</h4>
-                    <span className="text-muted-foreground">{item.value}</span>
-                  </div>
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target={item.label === "Email" ? "_self" : "_blank"}
+                      rel={item.label === "Email" ? "" : "noopener noreferrer"}
+                      className="flex items-center gap-4 flex-1"
+                    >
+                      <div className={`relative flex items-center justify-center w-14 h-14 bg-${item.color}/10 rounded-xl border border-${item.color}/20 group-hover:border-${item.color}/40 transition-all duration-300 group-hover:scale-110`}>
+                        <item.icon className={`h-6 w-6 text-${item.color}`} />
+                        <div className={`absolute -inset-1 bg-gradient-to-r from-${item.color}/0 to-${item.color}/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300`}></div>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-foreground">{item.label}</h4>
+                        <span className="text-muted-foreground hover:text-primary transition-colors">{item.value}</span>
+                      </div>
+                    </a>
+                  ) : (
+                    <>
+                      <div className={`relative flex items-center justify-center w-14 h-14 bg-${item.color}/10 rounded-xl border border-${item.color}/20 group-hover:border-${item.color}/40 transition-all duration-300 group-hover:scale-110`}>
+                        <item.icon className={`h-6 w-6 text-${item.color}`} />
+                        <div className={`absolute -inset-1 bg-gradient-to-r from-${item.color}/0 to-${item.color}/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300`}></div>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-foreground">{item.label}</h4>
+                        <span className="text-muted-foreground">{item.value}</span>
+                      </div>
+                    </>
+                  )}
                 </motion.div>
               ))}
             </div>
 
-            <motion.div 
-              className="pt-8"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <div className="p-6 bg-card/50 backdrop-blur-md rounded-2xl border border-border/50">
-                <h4 className="font-medium text-foreground mb-4 flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-secondary" />
-                  Response Time
-                </h4>
-                <p className="text-muted-foreground">
-                  I typically respond to messages within 24 hours. For urgent inquiries, 
-                  please call or send an email with "URGENT" in the subject line.
-                </p>
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Contact Form */}
@@ -118,11 +116,11 @@ export function Contact() {
           >
             {/* Glowing border effect */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 via-secondary/50 to-accent/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-            
+
             <Card className="relative bg-card/50 backdrop-blur-md border-border/50 shadow-xl hover:shadow-2xl transition-all duration-300">
               {/* Shine effect */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/5 to-transparent rounded-2xl pointer-events-none"></div>
-              
+
               <CardHeader>
                 <CardTitle className="text-xl text-foreground flex items-center gap-2">
                   <Send className="h-5 w-5 text-primary" />
@@ -188,8 +186,8 @@ export function Contact() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Button 
-                      type="submit" 
+                    <Button
+                      type="submit"
                       className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/20"
                     >
                       <Send className="h-4 w-4 mr-2" />

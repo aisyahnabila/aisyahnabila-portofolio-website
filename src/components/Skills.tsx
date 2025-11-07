@@ -93,12 +93,7 @@ export function Skills() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 backdrop-blur-sm border border-emerald-500/20 mb-4">
-            <Sparkles className="h-4 w-4 text-emerald-500" />
-            <span className="text-emerald-600 dark:text-emerald-400 tracking-wider uppercase text-sm font-medium">What I Do</span>
-          </div>
+          transition={{ duration: 0.6 }} >
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
             Skills & Technologies
           </h2>
