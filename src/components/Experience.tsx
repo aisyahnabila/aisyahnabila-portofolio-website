@@ -105,13 +105,6 @@ export function Experience() {
             </Card>
           ))}
         </div>
-
-        <div className="text-center mt-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/10 rounded-full">
-            <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-            <span className="text-secondary font-medium">Available for new opportunities</span>
-          </div>
-        </div>
       </div>
     </section>
   );

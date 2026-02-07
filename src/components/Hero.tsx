@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 import { ArrowDown, Github, Linkedin, Mail, Code, Database, Cpu, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
-import profileImage from "figma:asset/44a7ed3e2fe6c72ade9f68d206e281d71bbeb1be.png";
+import profileImage from "../assets/animation_profile.png";
 
 export function Hero() {
   const [roleText, setRoleText] = useState("");
