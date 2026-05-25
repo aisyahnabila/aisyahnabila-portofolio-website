@@ -5,43 +5,55 @@ import { CalendarDays, MapPin } from "lucide-react";
 export function Experience() {
   const experiences = [
     {
-      title: "Senior Web Developer & System Analyst",
-      company: "TechCorp Solutions",
-      location: "Remote",
-      period: "2022 - Present",
+      title: "Technical Writer (System Analyst Support)",
+      company: "PT Sistem Informatika Semen Indonesia",
+      location: "Indonesia",
+      period: "Nov 2025 - Present",
       description: [
-        "Lead development of enterprise web applications serving 10,000+ users",
-        "Conducted comprehensive system analysis resulting in 40% performance improvement",
-        "Collaborated with stakeholders to gather requirements and design optimal solutions",
-        "Mentored junior developers and established coding standards"
+        "Developed Project Charter, Blueprint, and Technical Specification documentation.",
+        "Conducted requirement discussions with stakeholders to define system needs.",
+        "Managed MoM, Issue Log, Change Request, and BAPP documentation.",
+        "Delivered user training sessions and user guides to support adoption."
       ],
-      technologies: ["React", "Node.js", "PostgreSQL", "AWS", "System Design"]
+      technologies: ["ITIL Workflow", "ClickUp", "System Documentation", "Stakeholder Communication"]
     },
     {
-      title: "Full Stack Developer",
-      company: "Digital Innovations Inc",
-      location: "San Francisco, CA",
-      period: "2020 - 2022",
+      title: "Internship Web Developer",
+      company: "Dinas Sosial Provinsi Jawa Timur",
+      location: "Surabaya, Indonesia",
+      period: "Jul 2024 - Sep 2024",
       description: [
-        "Built responsive web applications using modern JavaScript frameworks",
-        "Designed and implemented RESTful APIs for mobile and web clients",
-        "Optimized database queries reducing response time by 60%",
-        "Participated in agile development cycles and code reviews"
+        "Developed a web-based inventory management information system using Laravel.",
+        "Reduced manual data entry errors by 30% through automated reporting and database validation.",
+        "Produced requirement analysis artifacts including Use Case, BPMN, and ERD.",
+        "Built inventory stock in/out and reporting features."
       ],
-      technologies: ["Vue.js", "Python", "Django", "MySQL", "Docker"]
+      technologies: ["Laravel", "PHP", "MySQL", "Tailwind CSS", "Scrum"]
     },
     {
-      title: "System Analyst",
-      company: "Business Solutions Group",
-      location: "New York, NY",
-      period: "2018 - 2020",
+      title: "Odoo Engineer Intern",
+      company: "PT Insan Sejahtera Engineering",
+      location: "Indonesia",
+      period: "Feb 2024 - Jul 2024",
       description: [
-        "Analyzed business processes and identified automation opportunities",
-        "Created detailed system documentation and workflow diagrams",
-        "Coordinated with IT teams to implement system improvements",
-        "Trained end users on new systems and processes"
+        "Developed a production monitoring app using Power Apps integrated with SQL Server and PLC data.",
+        "Contributed technical documentation for international system demonstrations.",
+        "Simulated Odoo ERP integration across Inventory, Purchase, Manufacturing, and Sales.",
+        "Supported workflow improvements for industry case simulations."
       ],
-      technologies: ["Business Analysis", "Process Optimization", "SQL", "Visio", "Documentation"]
+      technologies: ["Odoo ERP", "Power Apps", "Power BI", "SQL Server", "PLC Integration"]
+    },
+    {
+      title: "Independent Study - Data Analyst for Business",
+      company: "MSIB Kampus Merdeka",
+      location: "Indonesia",
+      period: "Mar 2024 - May 2024",
+      description: [
+        "Analyzed 6 years of export-import data to identify demand trends and key market patterns.",
+        "Delivered business recommendations using Tableau-based visualizations.",
+        "Supported logistics and market strategy insights through data-driven analysis."
+      ],
+      technologies: ["Tableau", "Business Analysis", "Data Visualization", "Demand Trend Analysis"]
     }
   ];
 
@@ -53,8 +65,8 @@ export function Experience() {
             Professional Experience
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            My journey in web development and system analysis, working with diverse teams 
-            to deliver impactful solutions.
+            Internship and project-based experiences in system analysis support,
+            documentation, and business-focused technical implementation.
           </p>
         </div>
 

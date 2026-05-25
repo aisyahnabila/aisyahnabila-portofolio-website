@@ -8,7 +8,7 @@ export function Hero() {
   const [roleText, setRoleText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
 
-  const fullRole = "WEB DEVELOPER & SYSTEM ANALYST";
+  const fullRole = "SYSTEM ANALYST & WEB IMPLEMENTATION";
 
   useEffect(() => {
     // Typing effect untuk role saja
@@ -175,9 +175,9 @@ export function Hero() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                {roleText.includes("WEB DEVELOPER") ? (
+                {roleText.includes("SYSTEM ANALYST") ? (
                   <>
-                    <span className="text-blue-600 dark:text-primary drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">WEB DEVELOPER</span>
+                    <span className="text-blue-600 dark:text-primary drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">SYSTEM ANALYST</span>
                     {roleText.includes("&") && (
                       <>
                         {" "}& <br />
@@ -203,8 +203,8 @@ export function Hero() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                I create robust web applications and analyze complex systems to deliver
-                innovative solutions that drive business growth and enhance user experiences.
+                I bridge business needs with practical technical solutions through
+                structured analysis, clear documentation, and system validation support.
               </motion.p>
             </div>
 
@@ -219,7 +219,7 @@ export function Hero() {
                 onClick={scrollToContact}
                 className="group relative bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl shadow-2xl border-0 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
               >
-                <span className="relative z-10">Let's Work Together</span>
+                <span className="relative z-10">Contact Me</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Button>
               <Button
@@ -227,7 +227,7 @@ export function Hero() {
                 onClick={scrollToProjects}
                 className="border-2 border-slate-800 dark:border-white/80 bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 hover:border-slate-900 dark:hover:border-white backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
               >
-                <span className="font-bold">View Portfolio</span>
+                <span className="font-bold">View Projects</span>
               </Button>
             </motion.div>
           </motion.div>
@@ -334,7 +334,7 @@ export function Hero() {
             {[
               { icon: Github, color: "secondary", url: "https://github.com/aisyahnabila", label: "GitHub" },
               { icon: Linkedin, color: "primary", url: "https://linkedin.com/in/aisyah-nabila-zahra-0a6046226/", label: "LinkedIn" },
-              { icon: Mail, color: "accent", url: "mailto:your.email@example.com", label: "Email" }
+                { icon: Mail, color: "accent", url: "mailto:aisyahnabilaz514@gmail.com", label: "Email" }
             ].map((social, index) => (
               <motion.a
                 key={index}

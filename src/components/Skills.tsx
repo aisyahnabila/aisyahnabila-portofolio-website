@@ -6,63 +6,62 @@ import { Code, Server, Database, LineChart, Wrench, Sparkles } from "lucide-reac
 export function Skills() {
   const skillCategories = [
     {
-      title: "Frontend Development",
+      title: "System Analysis",
       color: "blue",
       bgColor: "bg-blue-500/10",
       borderColor: "border-blue-500/20",
       textColor: "text-blue-500",
       hoverBorder: "hover:border-blue-500/30",
       glowColor: "from-blue-500/50 to-blue-500/30",
-      icon: Code,
+      icon: LineChart,
       skills: [
-        "React", "TypeScript", "Next.js", "Vue.js", "HTML5", "CSS3",
-        "Tailwind CSS", "JavaScript", "Responsive Design"
+        "Requirement Gathering", "Use Case Diagram", "BPMN", "ERD",
+        "Business Process Modeling", "System Documentation"
       ]
     },
     {
-      title: "Backend Development",
+      title: "System Testing",
       color: "emerald",
       bgColor: "bg-emerald-500/10",
       borderColor: "border-emerald-500/20",
       textColor: "text-emerald-500",
       hoverBorder: "hover:border-emerald-500/30",
       glowColor: "from-emerald-500/50 to-emerald-500/30",
-      icon: Server,
+      icon: Code,
       skills: [
-        "Node.js", "Python", "Express.js", "REST APIs", "Microservices", "API Design"
+        "Unit Testing", "Functional Testing", "User Acceptance Testing", "System Integration Testing"
       ]
     },
     {
-      title: "Database & Storage",
+      title: "Backend and API",
       color: "purple",
       bgColor: "bg-purple-500/10",
       borderColor: "border-purple-500/20",
       textColor: "text-purple-500",
       hoverBorder: "hover:border-purple-500/30",
       glowColor: "from-purple-500/50 to-purple-500/30",
-      icon: Database,
+      icon: Server,
       skills: [
-        "PostgreSQL", "MySQL", "MongoDB", "Database Design",
-        "Query Optimization", "Data Modeling", "Cloud Storage"
+        "Laravel", "PHP", "REST API", "MVC Architecture",
+        "JavaScript", "Tailwind CSS"
       ]
     },
     {
-      title: "System Analysis",
+      title: "Database",
       color: "orange",
       bgColor: "bg-orange-500/10",
       borderColor: "border-orange-500/20",
       textColor: "text-orange-500",
       hoverBorder: "hover:border-orange-500/30",
       glowColor: "from-orange-500/50 to-orange-500/30",
-      icon: LineChart,
+      icon: Database,
       skills: [
-        "Business Process Analysis", "Requirements Gathering", "System Design",
-        "UML Diagrams", "Workflow Optimization", "Technical Documentation",
-        "Stakeholder Communication"
+        "MySQL", "PostgreSQL", "SQL Server", "Data Validation",
+        "Reporting Data Accuracy"
       ]
     },
     {
-      title: "Tools & Technologies",
+      title: "Tools and Reporting",
       color: "cyan",
       bgColor: "bg-cyan-500/10",
       borderColor: "border-cyan-500/20",
@@ -71,8 +70,7 @@ export function Skills() {
       glowColor: "from-cyan-500/50 to-cyan-500/30",
       icon: Wrench,
       skills: [
-        "Git", "Docker", "Linux", "Figma", "Jira", "Agile/Scrum",
-        "CI/CD", "Testing Frameworks", "Performance Monitoring"
+        "Draw.io", "Visual Paradigm", "ClickUp", "Tableau", "Power BI", "SPSS", "Odoo ERP"
       ]
     }
   ];
@@ -94,11 +92,11 @@ export function Skills() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }} >
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Skills & Technologies
+            Core Competencies
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto px-4 py-4">
-            Here are the technologies and skills I use to bring ideas to life and
-            optimize systems for better performance.
+            Core capabilities in system analysis, testing support, and technical
+            implementation for business-focused solutions.
           </p>
         </motion.div>
 

@@ -32,8 +32,8 @@ export function Contact() {
             Get In Touch
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Ready to start your next project? Let's discuss how I can help bring your
-            ideas to life or optimize your existing systems.
+            I am open to entry-level System Analyst opportunities and collaborative
+            projects in business system development.
           </p>
         </motion.div>
 
@@ -51,9 +51,8 @@ export function Contact() {
                 Let's Connect
               </h3>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                I'm always interested in hearing about new opportunities, challenging
-                projects, or just having a conversation about technology and innovation.
-                Feel free to reach out!
+                If you are looking for someone who can connect business requirements
+                with practical technical delivery, feel free to reach out.
               </p>
             </div>
 
@@ -61,7 +60,7 @@ export function Contact() {
               {[
                 { icon: Mail, color: "primary", label: "Email", value: "aisyahnabilaz514@gmail.com", link: "mailto:aisyahnabilaz514@gmail.com" },
                 { icon: MessageCircle, color: "secondary", label: "WhatsApp", value: "+62 851-5650-5772", link: "https://wa.me/6285156505772" },
-                { icon: MapPin, color: "accent", label: "Location", value: "Available for remote work worldwide", link: null }
+                { icon: MapPin, color: "accent", label: "Location", value: "Open to on-site, hybrid, and remote opportunities", link: null }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -164,7 +163,7 @@ export function Contact() {
                       id="subject"
                       name="subject"
                       type="text"
-                      placeholder="Project inquiry, collaboration, etc."
+                      placeholder="Job opportunity or collaboration"
                       className="bg-muted/50 backdrop-blur-sm border-border/50 focus:border-primary/50 transition-all duration-300"
                     />
                   </div>
@@ -177,7 +176,7 @@ export function Contact() {
                       id="message"
                       name="message"
                       rows={5}
-                      placeholder="Tell me about your project or how I can help..."
+                      placeholder="Tell me about the role, project, or collaboration details..."
                       className="bg-muted/50 backdrop-blur-sm border-border/50 focus:border-primary/50 transition-all duration-300"
                     />
                   </div>

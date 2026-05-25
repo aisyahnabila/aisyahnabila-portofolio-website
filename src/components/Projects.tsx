@@ -1,37 +1,55 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { ExternalLink, Github, Sparkles } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { motion } from "motion/react";
 
 export function Projects() {
   const projects = [
     {
-      title: "Enterprise Dashboard",
-      description: "A comprehensive business intelligence dashboard for tracking KPIs, analytics, and system performance. Built with React, TypeScript, and real-time data visualization.",
+      title: "Tally Reporting System",
+      description: "Supported workflow and requirement analysis for a reporting system involving survey, dashboard, and finance processes across multiple user roles.",
       image: "https://images.unsplash.com/photo-1649451844931-57e22fc82de3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGRhc2hib2FyZHxlbnwxfHx8fDE3NTg0NTcwNTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Chart.js"],
-      liveLink: "#",
-      githubLink: "#",
-      category: "Web Development"
-    },
-    {
-      title: "System Analysis Platform",
-      description: "A comprehensive platform for analyzing business processes, identifying bottlenecks, and optimizing workflows. Features automated reporting and recommendation engines.",
-      image: "https://images.unsplash.com/photo-1728044849277-9cb3cd94e729?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGFuYWx5dGljcyUyMHN5c3RlbXxlbnwxfHx8fDE3NTg0NzU5Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      technologies: ["Python", "Django", "Vue.js", "MySQL", "Docker"],
-      liveLink: "#",
+      technologies: ["Laravel", "PHP", "Blade", "MVC", "System Analysis"],
+      notionLink: "#",
       githubLink: "#",
       category: "System Analysis"
     },
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with inventory management, payment processing, and advanced analytics. Supports multiple vendors and real-time order tracking.",
-      image: "https://images.unsplash.com/photo-1657812159075-7f0abd98f7b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlLWNvbW1lcmNlJTIwd2Vic2l0ZXxlbnwxfHx8fDE3NTg0NzMxODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      technologies: ["Next.js", "Stripe", "MongoDB", "AWS", "Tailwind CSS"],
-      liveLink: "#",
+      title: "Litera Platform v2.0",
+      description: "Delivered product improvements focused on UI flow, bug fixing, and release stability through structured testing and documentation.",
+      image: "https://images.unsplash.com/photo-1728044849277-9cb3cd94e729?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGFuYWx5dGljcyUyMHN5c3RlbXxlbnwxfHx8fDE3NTg0NzU5Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      technologies: ["Laravel", "PHP", "Tailwind CSS", "JavaScript", "React Native"],
+      notionLink: "#",
       githubLink: "#",
-      category: "Web Development"
+      category: "Product Optimization"
+    },
+    {
+      title: "Litera Digital Book Platform",
+      description: "Developed a digital publishing platform with role-based access for readers, writers, and editors across web and mobile.",
+      image: "https://images.unsplash.com/photo-1657812159075-7f0abd98f7b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlLWNvbW1lcmNlJTIwd2Vic2l0ZXxlbnwxfHx8fDE3NTg0NzMxODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      technologies: ["Laravel", "PHP", "Tailwind CSS", "JavaScript", "React Native"],
+      notionLink: "#",
+      githubLink: "#",
+      category: "Web and Mobile"
+    },
+    {
+      title: "Careventory",
+      description: "Built an integrated inventory management system with digital transaction logging and reporting to improve tracking accuracy.",
+      image: new URL("../assets/Careventory.jpg", import.meta.url).href,
+      technologies: ["Laravel", "PHP", "Tailwind CSS", "JavaScript"],
+      notionLink: "https://www.notion.so/Careventory-Web-Based-Inventory-Management-System-2a998004415e81eeac84e83d4674f029?source=copy_link",
+      githubLink: "https://github.com/aisyahnabila/Careventory_V3.git",
+      category: "Inventory System"
+    },
+    {
+      title: "CoE Dashboard",
+      description: "Developed a Center of Excellence portal and research information site, including architecture planning and feature integration.",
+      image: "https://images.unsplash.com/photo-1728044849277-9cb3cd94e729?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGFuYWx5dGljcyUyMHN5c3RlbXxlbnwxfHx8fDE3NTg0NzU5Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      technologies: ["Laravel", "PHP", "Tailwind CSS", "JavaScript"],
+      notionLink: "#",
+      githubLink: "#",
+      category: "Portal Development"
     }
   ];
 
@@ -56,8 +74,8 @@ export function Projects() {
             Featured Projects
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Here are some of my recent projects that showcase my skills in web development
-            and system analysis. Each project solved real business challenges.
+            Selected projects showcasing my work in system analysis support,
+            web-based implementation, and process-driven solution delivery.
           </p>
         </motion.div>
 
@@ -127,10 +145,10 @@ export function Projects() {
                     <Button
                       size="sm"
                       className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
-                      onClick={() => window.open(project.liveLink, '_blank')}
+                      onClick={() => window.open(project.notionLink, '_blank')}
                     >
                       <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
+                      Notion Page
                     </Button>
                     <Button
                       variant="outline"

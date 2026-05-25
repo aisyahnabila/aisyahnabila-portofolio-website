@@ -6,26 +6,26 @@ export function About() {
   const features = [
     {
       icon: Code,
-      title: "Development",
-      description: "Full-stack web development with modern frameworks",
+      title: "Requirement Analysis",
+      description: "Gathering and structuring business needs into clear system requirements",
       color: "primary"
     },
     {
       icon: Database,
-      title: "Analysis",
-      description: "System analysis and process optimization",
+      title: "Process Modeling",
+      description: "Designing BPMN, use case, and ERD artifacts for system clarity",
       color: "secondary"
     },
     {
       icon: Users,
-      title: "Collaboration",
-      description: "Working with cross-functional teams",
+      title: "Testing Support",
+      description: "Supporting UAT and SIT to validate solutions before implementation",
       color: "accent"
     },
     {
       icon: Lightbulb,
-      title: "Innovation",
-      description: "Creative problem-solving and optimization",
+      title: "Collaboration",
+      description: "Aligning stakeholders, users, and developers toward delivery goals",
       color: "primary"
     }
   ];
@@ -50,8 +50,8 @@ export function About() {
             About Me
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            I'm a passionate web developer and system analyst with expertise in creating 
-            scalable web applications and optimizing business processes through technology.
+            I focus on translating business needs into clear system specifications and
+            actionable workflows that support reliable implementation.
           </p>
         </motion.div>
 
@@ -66,21 +66,21 @@ export function About() {
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-2xl blur-xl"></div>
               <div className="relative p-8 bg-card/50 backdrop-blur-md rounded-2xl border border-border/50">
                 <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                  My Journey
+                  What I Focus On
                 </h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed">
-                  With several years of experience in web development and system analysis, 
-                  I've had the opportunity to work on diverse projects ranging from small 
-                  business websites to enterprise-level applications.
+                  I am a System Analyst with practical experience from internships and
+                  project-based work. My core strengths include requirement discussions,
+                  business process analysis, and system documentation.
                 </p>
                 <p className="text-muted-foreground mb-4 leading-relaxed">
-                  My dual expertise allows me to not only build robust applications but also 
-                  analyze and improve existing systems, ensuring they meet both technical 
-                  requirements and business objectives.
+                  I support key activities across the system development lifecycle,
+                  including BPMN and ERD modeling, user validation through UAT and SIT,
+                  and communication between technical and non-technical stakeholders.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  I'm constantly learning new technologies and methodologies to stay current 
-                  with industry trends and deliver cutting-edge solutions.
+                  With implementation exposure in web-based systems, I ensure analysis
+                  outputs remain realistic, measurable, and aligned with business goals.
                 </p>
               </div>
             </div>

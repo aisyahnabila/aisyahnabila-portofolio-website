@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -21,11 +21,11 @@ export function Footer() {
           {/* Brand & Description */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-primary">
-              Aisyah Nabila Portofolio
+              Aisyah Nabila Portfolio
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Web Developer & System Analyst passionate about creating innovative 
-              solutions and optimizing systems for better performance.
+              System Analyst focused on business process clarity, system documentation,
+              and practical solution delivery.
             </p>
           </div>
 
