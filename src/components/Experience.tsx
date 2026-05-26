@@ -7,8 +7,8 @@ export function Experience() {
     {
       title: "Technical Writer (System Analyst Support)",
       company: "PT Sistem Informatika Semen Indonesia",
-      location: "Indonesia",
-      period: "Nov 2025 - Present",
+      location: "Gresik, Indonesia",
+      period: "Nov 2025 - May 2026",
       description: [
         "Developed Project Charter, Blueprint, and Technical Specification documentation.",
         "Conducted requirement discussions with stakeholders to define system needs.",
@@ -33,7 +33,7 @@ export function Experience() {
     {
       title: "Odoo Engineer Intern",
       company: "PT Insan Sejahtera Engineering",
-      location: "Indonesia",
+      location: "Sidoarjo, Indonesia",
       period: "Feb 2024 - Jul 2024",
       description: [
         "Developed a production monitoring app using Power Apps integrated with SQL Server and PLC data.",
@@ -46,7 +46,7 @@ export function Experience() {
     {
       title: "Independent Study - Data Analyst for Business",
       company: "MSIB Kampus Merdeka",
-      location: "Indonesia",
+      location: "Surabaya, Indonesia",
       period: "Mar 2024 - May 2024",
       description: [
         "Analyzed 6 years of export-import data to identify demand trends and key market patterns.",
