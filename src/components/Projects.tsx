@@ -11,46 +11,28 @@ export function Projects() {
       description: "Supported workflow and requirement analysis for a reporting system involving survey, dashboard, and finance processes across multiple user roles.",
       image: "https://images.unsplash.com/photo-1649451844931-57e22fc82de3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGRhc2hib2FyZHxlbnwxfHx8fDE3NTg0NTcwNTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       technologies: ["Laravel", "PHP", "Blade", "MVC", "System Analysis"],
-      notionLink: "#",
-      githubLink: "#",
+      status: "In Progress",
       category: "System Analysis"
     },
     {
-      title: "Litera Platform v2.0",
-      description: "Delivered product improvements focused on UI flow, bug fixing, and release stability through structured testing and documentation.",
-      image: "https://images.unsplash.com/photo-1728044849277-9cb3cd94e729?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGFuYWx5dGljcyUyMHN5c3RlbXxlbnwxfHx8fDE3NTg0NzU5Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      title: "Litera - Digital Publishing Ecosystem",
+      description: "A digital publishing platform consisting of a mobile app for readers and writers, as well as a web dashboard for administrators and editors.",
+      image: new URL("../assets/Litera.jpg", import.meta.url).href,
       technologies: ["Laravel", "PHP", "Tailwind CSS", "JavaScript", "React Native"],
-      notionLink: "#",
-      githubLink: "#",
-      category: "Product Optimization"
-    },
-    {
-      title: "Litera Digital Book Platform",
-      description: "Developed a digital publishing platform with role-based access for readers, writers, and editors across web and mobile.",
-      image: "https://images.unsplash.com/photo-1657812159075-7f0abd98f7b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlLWNvbW1lcmNlJTIwd2Vic2l0ZXxlbnwxfHx8fDE3NTg0NzMxODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      technologies: ["Laravel", "PHP", "Tailwind CSS", "JavaScript", "React Native"],
-      notionLink: "#",
-      githubLink: "#",
+      status: "Completed",
+      notionLink: "https://www.notion.so/Litera-Digital-Book-Platform-2a998004415e812f8325ca5759f11f50?source=copy_link",
       category: "Web and Mobile"
     },
     {
-      title: "Careventory",
+      title: "Careventory - Consumable Inventory Management System",
       description: "Built an integrated inventory management system with digital transaction logging and reporting to improve tracking accuracy.",
       image: new URL("../assets/Careventory.jpg", import.meta.url).href,
       technologies: ["Laravel", "PHP", "Tailwind CSS", "JavaScript"],
+      status: "Completed",
       notionLink: "https://www.notion.so/Careventory-Web-Based-Inventory-Management-System-2a998004415e81eeac84e83d4674f029?source=copy_link",
       githubLink: "https://github.com/aisyahnabila/Careventory_V3.git",
       category: "Inventory System"
     },
-    {
-      title: "CoE Dashboard",
-      description: "Developed a Center of Excellence portal and research information site, including architecture planning and feature integration.",
-      image: "https://images.unsplash.com/photo-1728044849277-9cb3cd94e729?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGFuYWx5dGljcyUyMHN5c3RlbXxlbnwxfHx8fDE3NTg0NzU5Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      technologies: ["Laravel", "PHP", "Tailwind CSS", "JavaScript"],
-      notionLink: "#",
-      githubLink: "#",
-      category: "Portal Development"
-    }
   ];
 
   return (
@@ -93,7 +75,13 @@ export function Projects() {
               {/* Glowing border effect */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-secondary/50 via-primary/50 to-accent/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
-              <Card className="relative h-full bg-card/50 backdrop-blur-md border-border/50 overflow-hidden hover:shadow-2xl transition-all duration-300">
+              <Card
+                className={
+                  project.status === "In Progress"
+                    ? "relative h-full bg-card/50 backdrop-blur-md border-border/50 border-l-4 border-l-amber-500/60 overflow-hidden hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300"
+                    : "relative h-full bg-card/50 backdrop-blur-md border-border/50 overflow-hidden hover:shadow-2xl transition-all duration-300"
+                }
+              >
                 {/* Shine effect overlay */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none z-10"></div>
 
@@ -115,12 +103,21 @@ export function Projects() {
                       {project.category}
                     </Badge>
                   </motion.div>
+
+                  {/* Status badge moved to header to avoid overlapping the image */}
                 </div>
 
                 <CardHeader>
-                  <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </CardTitle>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">
+                      {project.title}
+                    </CardTitle>
+                    {project.status === "In Progress" && (
+                      <Badge className="bg-slate-800 text-slate-100 border border-slate-700/60 shadow-md px-2 py-1 text-xs">
+                        In Progress
+                      </Badge>
+                    )}
+                  </div>
                 </CardHeader>
 
                 <CardContent className="space-y-4">
@@ -142,19 +139,26 @@ export function Projects() {
                   </div>
 
                   <div className="flex gap-3 pt-4">
-                    <Button
-                      size="sm"
-                      className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
-                      onClick={() => window.open(project.notionLink, '_blank')}
-                    >
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Notion Page
-                    </Button>
+                    {project.notionLink && project.notionLink !== "#" && (
+                      <Button
+                        size="sm"
+                        className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
+                        onClick={() => window.open(project.notionLink, '_blank')}
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Notion Page
+                      </Button>
+                    )}
                     <Button
                       variant="outline"
                       size="sm"
-                      className="border-border/50 hover:border-primary/50 hover:bg-primary/10 backdrop-blur-sm transition-all duration-300 hover:scale-105"
-                      onClick={() => window.open(project.githubLink, '_blank')}
+                      disabled={!project.githubLink || project.githubLink === "#"}
+                      className={
+                        !project.githubLink || project.githubLink === "#"
+                          ? "border-border/50 bg-muted/40 text-muted-foreground/70 cursor-not-allowed opacity-70"
+                          : "border-border/50 hover:border-primary/50 hover:bg-primary/10 backdrop-blur-sm transition-all duration-300 hover:scale-105"
+                      }
+                      onClick={() => project.githubLink && project.githubLink !== "#" && window.open(project.githubLink, '_blank')}
                     >
                       <Github className="h-4 w-4 mr-2" />
                       Code
