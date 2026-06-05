@@ -2,13 +2,13 @@ import { Button } from "./ui/button";
 import { ArrowDown, Github, Linkedin, Mail, Code, Database, Cpu, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
-import profileImage from "../assets/animation_profile.png";
+import profileImage from "../assets/animation_profile.jpg";
 
 export function Hero() {
   const [roleText, setRoleText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
 
-  const fullRole = "SYSTEM ANALYST & WEB IMPLEMENTATION";
+  const fullRole = "SYSTEM ANALYST | QUALITY ASSURANCE | TECHNICAL WRITER";
 
   useEffect(() => {
     // Typing effect untuk role saja
@@ -175,23 +175,18 @@ export function Hero() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                {roleText.includes("SYSTEM ANALYST") ? (
-                  <>
-                    <span className="text-blue-600 dark:text-primary drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">SYSTEM ANALYST</span>
-                    {roleText.includes("&") && (
-                      <>
-                        {" "}& <br />
-                        <span className="text-emerald-600 dark:text-secondary drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]">
-                          {roleText.split("& ")[1] || ""}
-                        </span>
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {roleText}
-                  </>
-                )}
+                {roleText
+                  .split("|")
+                  .map((segment, index, segments) => (
+                    <span key={`${segment}-${index}`}>
+                      <span className="text-blue-600 dark:text-primary drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
+                        {segment}
+                      </span>
+                      {index < segments.length - 1 && (
+                        <span className="text-slate-400 dark:text-slate-500">|</span>
+                      )}
+                    </span>
+                  ))}
                 {roleText.length > 0 && roleText.length < fullRole.length && showCursor && (
                   <span className="inline-block w-0.5 sm:w-1 h-6 sm:h-10 bg-emerald-600 dark:bg-secondary ml-1 animate-pulse"></span>
                 )}
@@ -239,7 +234,8 @@ export function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="relative group w-[200px] sm:w-[220px] lg:w-[250px]">
+            {/* Ubah nilai w-[...] di bawah ini untuk mengatur seberapa besar foto profil yang diinginkan */}
+            <div className="relative group w-[140px] sm:w-[120px] lg:w-[150px]">
               {/* Animated rings around photo */}
               <div className="absolute inset-0 -z-10">
                 <motion.div
@@ -279,7 +275,7 @@ export function Hero() {
                   rotateY: 5,
                   rotateX: 5,
                 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 150, damping: 20 }}
                 style={{ perspective: 1000 }}
               >
                 {/* Holographic border effect */}
@@ -334,7 +330,7 @@ export function Hero() {
             {[
               { icon: Github, color: "secondary", url: "https://github.com/aisyahnabila", label: "GitHub" },
               { icon: Linkedin, color: "primary", url: "https://linkedin.com/in/aisyah-nabila-zahra-0a6046226/", label: "LinkedIn" },
-                { icon: Mail, color: "accent", url: "mailto:aisyahnabilaz514@gmail.com", label: "Email" }
+              { icon: Mail, color: "accent", url: "mailto:aisyahnabilaz514@gmail.com", label: "Email" }
             ].map((social, index) => (
               <motion.a
                 key={index}
