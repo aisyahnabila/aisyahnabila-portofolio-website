@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { ArrowDown, Github, Linkedin, Mail, Code, Database, Cpu, Sparkles } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, FileText, Database, ClipboardCheck, Workflow } from "lucide-react";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 import profileImage from "../assets/animation_profile.jpg";
@@ -113,7 +113,7 @@ export function Hero() {
             ease: "easeInOut"
           }}
         >
-          <Code className="h-16 w-16 text-secondary opacity-20 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
+          <FileText className="h-16 w-16 text-secondary opacity-20 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
         </motion.div>
         <motion.div
           className="absolute top-40 right-16"
@@ -141,7 +141,7 @@ export function Hero() {
             ease: "easeInOut"
           }}
         >
-          <Cpu className="h-14 w-14 text-accent opacity-25 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)]" />
+          <Workflow className="h-14 w-14 text-accent opacity-25 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)]" />
         </motion.div>
       </div>
 
@@ -197,9 +197,7 @@ export function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-              >
-                I bridge business needs with practical technical solutions through
-                structured analysis, clear documentation, and system validation support.
+              >I help teams turn business requirements into clear specifications, structured documentation, and tested, reliable systems — from BPMN and ERD modeling to UAT validation.
               </motion.p>
             </div>
 
@@ -285,7 +283,7 @@ export function Hero() {
                 <div className="relative p-2 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-full border border-white/20 shadow-2xl">
                   <img
                     src={profileImage}
-                    alt="Professional developer portrait"
+                    alt="Aisyah Nabila - System Analyst"
                     className="w-full h-auto aspect-square object-cover rounded-full shadow-xl"
                   />
 
@@ -328,9 +326,9 @@ export function Hero() {
         >
           <div className="flex justify-center gap-4 mb-6 p-3 bg-white/80 dark:bg-white/5 backdrop-blur-md rounded-full border border-slate-200 dark:border-white/10">
             {[
-              { icon: Github, color: "secondary", url: "https://github.com/aisyahnabila", label: "GitHub" },
               { icon: Linkedin, color: "primary", url: "https://linkedin.com/in/aisyah-nabila-zahra-0a6046226/", label: "LinkedIn" },
-              { icon: Mail, color: "accent", url: "mailto:aisyahnabilaz514@gmail.com", label: "Email" }
+              { icon: Mail, color: "accent", url: "mailto:aisyahnabilaz514@gmail.com", label: "Email" },
+              { icon: Github, color: "secondary", url: "https://github.com/aisyahnabila", label: "GitHub" }
             ].map((social, index) => (
               <motion.a
                 key={index}
