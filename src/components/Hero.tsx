@@ -48,10 +48,14 @@ export function Hero() {
           >
             <div className="space-y-4">
               <motion.p variants={textItem} className="text-sm sm:text-base font-medium tracking-wide text-muted-foreground uppercase">
-                System Analyst · QA · Technical Writer
+                System Analyst | QA | Technical Writer
               </motion.p>
 
-              <motion.h1 variants={textItem} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-tight">
+              <motion.h1
+                variants={textItem}
+                className="font-bold text-slate-900 dark:text-white leading-tight"
+                style={{ fontSize: 'clamp(2.25rem, 1.1rem + 4.5vw, 4.5rem)' }}
+              >
                 Aisyah Nabila
               </motion.h1>
 
