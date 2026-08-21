@@ -2,13 +2,30 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { Mail, MapPin, Send, Sparkles, MessageCircle } from "lucide-react";
+import { Mail, MapPin, Send, Sparkles, MessageCircle, CheckCircle2 } from "lucide-react";
 import { motion } from "motion/react";
+import { useState } from "react";
+
+const CONTACT_EMAIL = "aisyahnabilaz514@gmail.com";
 
 export function Contact() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('Thank you for your message! This is a demo form.');
+
+    const formData = new FormData(e.currentTarget);
+    const name = (formData.get("name") as string).trim();
+    const email = (formData.get("email") as string).trim();
+    const subject = (formData.get("subject") as string).trim();
+    const message = (formData.get("message") as string).trim();
+
+    const mailtoSubject = subject || `Portfolio contact from ${name}`;
+    const mailtoBody = `${message}\n\n— ${name} (${email})`;
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`;
+
+    window.location.href = mailtoUrl;
+    setSubmitted(true);
   };
 
   return (
@@ -152,6 +169,7 @@ export function Contact() {
                         id="name"
                         name="name"
                         type="text"
+                        required
                         placeholder="Your name"
                         className="bg-muted/50 backdrop-blur-sm border-border/50 focus:border-primary/50 transition-all duration-300"
                       />
@@ -164,6 +182,7 @@ export function Contact() {
                         id="email"
                         name="email"
                         type="email"
+                        required
                         placeholder="your.email@example.com"
                         className="bg-muted/50 backdrop-blur-sm border-border/50 focus:border-primary/50 transition-all duration-300"
                       />
@@ -191,6 +210,7 @@ export function Contact() {
                       id="message"
                       name="message"
                       rows={5}
+                      required
                       placeholder="Tell me about the role, project, or collaboration details..."
                       className="bg-muted/50 backdrop-blur-sm border-border/50 focus:border-primary/50 transition-all duration-300"
                     />
@@ -208,26 +228,19 @@ export function Contact() {
                       Send Message
                     </Button>
                   </motion.div>
+
+                  {submitted && (
+                    <p role="status" className="flex items-center gap-2 text-sm text-secondary">
+                      <CheckCircle2 className="h-4 w-4 shrink-0" />
+                      Your email client should now open with your message ready to send.
+                    </p>
+                  )}
                 </form>
               </CardContent>
             </Card>
           </motion.div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-      `}</style>
     </section>
   );
 }

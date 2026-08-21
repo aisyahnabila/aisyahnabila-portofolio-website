@@ -122,7 +122,7 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
                 onClick={toggleTheme}
                 aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
                 aria-pressed={isDark}
-                className="w-10 h-10 p-0 rounded-full bg-muted/50 hover:bg-muted border border-border/50 hover:border-primary/30 transition-all duration-300"
+                className="w-11 h-11 p-0 rounded-full bg-muted/50 hover:bg-muted border border-border/50 hover:border-primary/30 transition-all duration-300"
               >
                 {isDark ? <Sun className="h-4 w-4 text-secondary" /> : <Moon className="h-4 w-4 text-primary" />}
               </Button>
@@ -137,7 +137,7 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                className="w-10 h-10 p-0 rounded-full bg-muted/50 hover:bg-muted border border-border/50"
+                className="w-11 h-11 p-0 rounded-full bg-muted/50 hover:bg-muted border border-border/50"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
