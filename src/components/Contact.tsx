@@ -58,9 +58,24 @@ export function Contact() {
 
             <div className="space-y-6">
               {[
-                { icon: Mail, color: "primary", label: "Email", value: "aisyahnabilaz514@gmail.com", link: "mailto:aisyahnabilaz514@gmail.com" },
-                { icon: MessageCircle, color: "secondary", label: "WhatsApp", value: "+62 851-5650-5772", link: "https://wa.me/6285156505772" },
-                { icon: MapPin, color: "accent", label: "Location", value: "Open to on-site, hybrid, and remote opportunities", link: null }
+                {
+                  icon: Mail, label: "Email", value: "aisyahnabilaz514@gmail.com", link: "mailto:aisyahnabilaz514@gmail.com",
+                  iconWrap: "bg-primary/10 border-primary/20 group-hover:border-primary/40",
+                  iconColor: "text-primary",
+                  glow: "from-primary/0 to-primary/20"
+                },
+                {
+                  icon: MessageCircle, label: "WhatsApp", value: "+62 851-5650-5772", link: "https://wa.me/6285156505772",
+                  iconWrap: "bg-secondary/10 border-secondary/20 group-hover:border-secondary/40",
+                  iconColor: "text-secondary",
+                  glow: "from-secondary/0 to-secondary/20"
+                },
+                {
+                  icon: MapPin, label: "Location", value: "Open to on-site, hybrid, and remote opportunities", link: null,
+                  iconWrap: "bg-accent/10 border-accent/20 group-hover:border-accent/40",
+                  iconColor: "text-accent",
+                  glow: "from-accent/0 to-accent/20"
+                }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -78,9 +93,9 @@ export function Contact() {
                       rel={item.label === "Email" ? "" : "noopener noreferrer"}
                       className="flex items-center gap-4 flex-1"
                     >
-                      <div className={`relative flex items-center justify-center w-14 h-14 bg-${item.color}/10 rounded-xl border border-${item.color}/20 group-hover:border-${item.color}/40 transition-all duration-300 group-hover:scale-110`}>
-                        <item.icon className={`h-6 w-6 text-${item.color}`} />
-                        <div className={`absolute -inset-1 bg-gradient-to-r from-${item.color}/0 to-${item.color}/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300`}></div>
+                      <div className={`relative flex items-center justify-center w-14 h-14 rounded-xl border transition-all duration-300 group-hover:scale-110 ${item.iconWrap}`}>
+                        <item.icon className={`h-6 w-6 ${item.iconColor}`} />
+                        <div className={`absolute -inset-1 bg-gradient-to-r ${item.glow} rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300`}></div>
                       </div>
                       <div>
                         <h4 className="font-medium text-foreground">{item.label}</h4>
@@ -89,9 +104,9 @@ export function Contact() {
                     </a>
                   ) : (
                     <>
-                      <div className={`relative flex items-center justify-center w-14 h-14 bg-${item.color}/10 rounded-xl border border-${item.color}/20 group-hover:border-${item.color}/40 transition-all duration-300 group-hover:scale-110`}>
-                        <item.icon className={`h-6 w-6 text-${item.color}`} />
-                        <div className={`absolute -inset-1 bg-gradient-to-r from-${item.color}/0 to-${item.color}/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300`}></div>
+                      <div className={`relative flex items-center justify-center w-14 h-14 rounded-xl border transition-all duration-300 group-hover:scale-110 ${item.iconWrap}`}>
+                        <item.icon className={`h-6 w-6 ${item.iconColor}`} />
+                        <div className={`absolute -inset-1 bg-gradient-to-r ${item.glow} rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300`}></div>
                       </div>
                       <div>
                         <h4 className="font-medium text-foreground">{item.label}</h4>

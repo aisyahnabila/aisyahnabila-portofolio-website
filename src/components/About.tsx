@@ -8,25 +8,37 @@ export function About() {
       icon: Code,
       title: "Requirement Analysis",
       description: "Gathering and structuring business needs into clear system requirements",
-      color: "primary"
+      glow: "from-primary/50 to-primary/30",
+      hoverBorder: "group-hover:border-primary/30",
+      iconWrap: "bg-primary/10 border-primary/20",
+      iconColor: "text-primary"
     },
     {
       icon: Database,
       title: "Process Modeling",
       description: "Designing BPMN, use case, and ERD artifacts for system clarity",
-      color: "secondary"
+      glow: "from-secondary/50 to-secondary/30",
+      hoverBorder: "group-hover:border-secondary/30",
+      iconWrap: "bg-secondary/10 border-secondary/20",
+      iconColor: "text-secondary"
     },
     {
       icon: Users,
       title: "Testing Support",
       description: "Supporting UAT and SIT to validate solutions before implementation",
-      color: "accent"
+      glow: "from-accent/50 to-accent/30",
+      hoverBorder: "group-hover:border-accent/30",
+      iconWrap: "bg-accent/10 border-accent/20",
+      iconColor: "text-accent"
     },
     {
       icon: Lightbulb,
       title: "Collaboration",
       description: "Aligning stakeholders, users, and developers toward delivery goals",
-      color: "primary"
+      glow: "from-primary/50 to-primary/30",
+      hoverBorder: "group-hover:border-primary/30",
+      iconWrap: "bg-primary/10 border-primary/20",
+      iconColor: "text-primary"
     }
   ];
 
@@ -98,19 +110,19 @@ export function About() {
                 whileHover={{ y: -5, scale: 1.05 }}
               >
                 {/* Glowing border effect */}
-                <div className={`absolute -inset-0.5 bg-gradient-to-r from-${feature.color}/50 to-${feature.color}/30 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500`}></div>
-                
-                <Card className="relative h-full bg-card/50 backdrop-blur-md border-border/50 group-hover:border-${feature.color}/30 transition-all duration-300">
+                <div className={`absolute -inset-0.5 bg-gradient-to-r ${feature.glow} rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500`}></div>
+
+                <Card className={`relative h-full bg-card/50 backdrop-blur-md border-border/50 ${feature.hoverBorder} transition-all duration-300`}>
                   {/* Shine effect */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/5 to-transparent rounded-2xl"></div>
-                  
+
                   <CardContent className="p-6 text-center relative">
                     <motion.div
-                      className={`inline-flex items-center justify-center w-16 h-16 bg-${feature.color}/10 rounded-xl border border-${feature.color}/20 mx-auto mb-3`}
+                      className={`inline-flex items-center justify-center w-16 h-16 ${feature.iconWrap} rounded-xl border mx-auto mb-3`}
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <feature.icon className={`h-8 w-8 text-${feature.color}`} />
+                      <feature.icon className={`h-8 w-8 ${feature.iconColor}`} />
                     </motion.div>
                     <h4 className="font-semibold text-foreground mb-2">{feature.title}</h4>
                     <p className="text-sm text-muted-foreground">

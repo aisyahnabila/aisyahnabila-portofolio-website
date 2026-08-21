@@ -70,7 +70,9 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
           ? 'bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/50 border border-border/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] sm:rounded-full rounded-2xl'
           : 'bg-transparent border border-transparent sm:rounded-full rounded-2xl'
           }`}>
-          <motion.div
+          <motion.button
+            type="button"
+            aria-label="Go to home section"
             className="flex items-center gap-2 group cursor-pointer"
             onClick={() => scrollToSection('home')}
             whileHover={{ scale: 1.05 }}
@@ -85,7 +87,7 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
                 </span>
               </div>
             </div>
-          </motion.div>
+          </motion.button>
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-2 bg-card/50 backdrop-blur-sm rounded-full px-2 py-2 border border-border/50">
             {navItems.map((item, index) => (
@@ -118,6 +120,8 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
                 variant="ghost"
                 size="sm"
                 onClick={toggleTheme}
+                aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+                aria-pressed={isDark}
                 className="w-10 h-10 p-0 rounded-full bg-muted/50 hover:bg-muted border border-border/50 hover:border-primary/30 transition-all duration-300"
               >
                 {isDark ? <Sun className="h-4 w-4 text-secondary" /> : <Moon className="h-4 w-4 text-primary" />}
@@ -135,6 +139,8 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
                 size="sm"
                 className="w-10 h-10 p-0 rounded-full bg-muted/50 hover:bg-muted border border-border/50"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMenuOpen}
               >
                 {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
               </Button>

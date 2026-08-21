@@ -1,10 +1,11 @@
 import { Button } from "./ui/button";
 import { ArrowDown, Github, Linkedin, Mail, FileText, Database, ClipboardCheck, Workflow } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { useState, useEffect } from "react";
 import profileImage from "../assets/animation_profile.jpg";
 
 export function Hero() {
+  const shouldReduceMotion = useReducedMotion();
   const [roleText, setRoleText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
 
@@ -86,11 +87,11 @@ export function Hero() {
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
-            animate={{
+            animate={shouldReduceMotion ? undefined : {
               y: [0, -30, 0],
               opacity: [0.2, 0.8, 0.2],
             }}
-            transition={{
+            transition={shouldReduceMotion ? undefined : {
               duration: 3 + Math.random() * 2,
               repeat: Infinity,
               delay: Math.random() * 2,
@@ -103,11 +104,11 @@ export function Hero() {
       <div className="absolute inset-0 z-30 overflow-hidden">
         <motion.div
           className="absolute top-20 left-10"
-          animate={{
+          animate={shouldReduceMotion ? undefined : {
             y: [0, -20, 0],
             rotate: [0, 10, 0],
           }}
-          transition={{
+          transition={shouldReduceMotion ? undefined : {
             duration: 4,
             repeat: Infinity,
             ease: "easeInOut"
@@ -117,11 +118,11 @@ export function Hero() {
         </motion.div>
         <motion.div
           className="absolute top-40 right-16"
-          animate={{
+          animate={shouldReduceMotion ? undefined : {
             y: [0, 20, 0],
             rotate: [0, -10, 0],
           }}
-          transition={{
+          transition={shouldReduceMotion ? undefined : {
             duration: 5,
             repeat: Infinity,
             ease: "easeInOut"
@@ -131,11 +132,11 @@ export function Hero() {
         </motion.div>
         <motion.div
           className="absolute bottom-32 left-20"
-          animate={{
+          animate={shouldReduceMotion ? undefined : {
             y: [0, -15, 0],
             rotate: [0, 15, 0],
           }}
-          transition={{
+          transition={shouldReduceMotion ? undefined : {
             duration: 3.5,
             repeat: Infinity,
             ease: "easeInOut"
@@ -233,16 +234,16 @@ export function Hero() {
             transition={{ duration: 0.8 }}
           >
             {/* Ubah nilai w-[...] di bawah ini untuk mengatur seberapa besar foto profil yang diinginkan */}
-            <div className="relative group w-[140px] sm:w-[120px] lg:w-[150px]">
+            <div className="relative group w-[120px] sm:w-[140px] lg:w-[150px]">
               {/* Animated rings around photo */}
               <div className="absolute inset-0 -z-10">
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-secondary/30"
-                  animate={{
+                  animate={shouldReduceMotion ? undefined : {
                     scale: [1, 1.1, 1],
                     opacity: [0.3, 0.6, 0.3],
                   }}
-                  transition={{
+                  transition={shouldReduceMotion ? undefined : {
                     duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut"
@@ -251,11 +252,11 @@ export function Hero() {
                 />
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-primary/30"
-                  animate={{
+                  animate={shouldReduceMotion ? undefined : {
                     scale: [1, 1.15, 1],
                     opacity: [0.3, 0.6, 0.3],
                   }}
-                  transition={{
+                  transition={shouldReduceMotion ? undefined : {
                     duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut",
@@ -302,11 +303,11 @@ export function Hero() {
                     left: `${50 + 50 * Math.cos(i * Math.PI / 4)}%`,
                     top: `${50 + 50 * Math.sin(i * Math.PI / 4)}%`,
                   }}
-                  animate={{
+                  animate={shouldReduceMotion ? undefined : {
                     scale: [1, 1.5, 1],
                     opacity: [0.5, 1, 0.5],
                   }}
-                  transition={{
+                  transition={shouldReduceMotion ? undefined : {
                     duration: 2,
                     repeat: Infinity,
                     delay: i * 0.2,
@@ -346,8 +347,8 @@ export function Hero() {
           </div>
 
           <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
+            animate={shouldReduceMotion ? undefined : { y: [0, 10, 0] }}
+            transition={shouldReduceMotion ? undefined : { duration: 1.5, repeat: Infinity }}
           >
             <ArrowDown className="h-6 w-6 text-slate-700 dark:text-white/70 mx-auto" />
           </motion.div>
@@ -356,39 +357,6 @@ export function Hero() {
 
       {/* Bottom Gradient Fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-35"></div>
-
-      <style jsx>{`
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-        @keyframes gradient-xy {
-          0%, 100% { background-position: 0% 0%; }
-          50% { background-position: 100% 100%; }
-        }
-        .animate-gradient-xy {
-          background-size: 200% 200%;
-          animation: gradient-xy 3s ease infinite;
-        }
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient-x {
-          background-size: 200% auto;
-          animation: gradient-x 3s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }
