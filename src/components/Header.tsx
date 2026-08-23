@@ -129,7 +129,7 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <motion.div whileTap={{ scale: 0.9 }}>
               <Button
                 variant="ghost"
                 size="sm"
@@ -137,7 +137,7 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
                 aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
                 aria-pressed={isDark}
                 style={{ width: 44, height: 44 }}
-                className="p-0 rounded-full bg-muted/50 hover:bg-muted border border-border/50 hover:border-primary/30 transition-all duration-300"
+                className="p-0 rounded-full bg-muted/50 hover:bg-muted border border-border/50 hover:border-primary/30 hover:scale-110 transition-all duration-300"
               >
                 {isDark ? <Sun className="h-4 w-4 text-secondary" /> : <Moon className="h-4 w-4 text-primary" />}
               </Button>
