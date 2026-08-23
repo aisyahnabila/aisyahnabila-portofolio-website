@@ -1,7 +1,8 @@
 import { Button } from "./ui/button";
-import { Moon, Sun, Menu, X, Code } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import logoPortofolio from "../assets/logo_portofolio.png";
 
 interface HeaderProps {
   isDark: boolean;
@@ -64,12 +65,12 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
   ];
 
   return (
-    <header className="fixed top-0 sm:top-4 w-full z-50 transition-all duration-300">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
-        <div className={`relative pointer-events-auto w-full max-w-5xl flex justify-between items-center px-4 sm:px-6 py-3 transition-all duration-500 ${isScrolled
-          ? 'bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/50 border border-border/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] sm:rounded-full rounded-2xl'
-          : 'bg-transparent border border-transparent sm:rounded-full rounded-2xl'
-          }`}>
+    <header className={`fixed top-0 inset-x-0 w-full z-50 transition-all duration-500 ${isScrolled
+      ? 'bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/50 border-b border-border/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)]'
+      : 'bg-transparent border-b border-transparent'
+      }`}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative pointer-events-auto w-full flex justify-between items-center py-3">
           <motion.button
             type="button"
             aria-label="Go to home section"
@@ -81,8 +82,21 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
             <div className="relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-primary/50 to-secondary/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
               <div className="relative flex items-center gap-2 px-3 py-2 bg-primary/10 rounded-lg border border-primary/20">
-                <Code className="h-5 w-5 text-primary" />
-                <span className="font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                <span
+                  className="h-8 w-8 shrink-0 bg-primary"
+                  style={{
+                    WebkitMaskImage: `url(${logoPortofolio})`,
+                    maskImage: `url(${logoPortofolio})`,
+                    WebkitMaskSize: 'contain',
+                    maskSize: 'contain',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskPosition: 'center',
+                  }}
+                  aria-hidden="true"
+                />
+                <span className="font-mono font-bold text-primary">
                   Aisyah Nabila
                 </span>
               </div>
