@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "./ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
@@ -35,6 +35,20 @@ export function Hero() {
   const [isHovering, setIsHovering] = useState(false);
   const [isTapped, setIsTapped] = useState(false);
   const showRealPhoto = isHovering || isTapped;
+
+  // Touch devices fire a synthetic mouseenter on tap but rarely a timely mouseleave,
+  // so mixing hover state with tap state leaves the photo stuck after the first tap.
+  // Only trust real hover on devices whose primary pointer can actually hover.
+  const [supportsHover, setSupportsHover] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  );
+  useEffect(() => {
+    const query = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const update = () => setSupportsHover(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
   const pixelDelays = useMemo(
     () => Array.from({ length: PIXEL_TILE_COUNT }, () => Math.random() * 0.3),
     []
@@ -177,8 +191,11 @@ export function Hero() {
             <div
               className="relative flex items-center justify-center cursor-pointer select-none"
               style={{ width: 'min(64vw, 280px)', height: 'min(64vw, 280px)' }}
-              onMouseEnter={() => setIsHovering(true)}
+              onMouseEnter={() => {
+                if (supportsHover) setIsHovering(true);
+              }}
               onMouseLeave={() => {
+                if (!supportsHover) return;
                 setIsHovering(false);
                 setIsTapped(false);
               }}
