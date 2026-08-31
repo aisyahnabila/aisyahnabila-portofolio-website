@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useReducedMotion } from 'motion/react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -10,6 +11,7 @@ import { Footer } from './components/Footer';
 
 export default function App() {
   const [isDark, setIsDark] = useState(true); // Default: dark mode
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     // Cek localStorage, jika tidak ada maka default dark mode
@@ -24,16 +26,34 @@ export default function App() {
     }
   }, []);
 
-  const toggleTheme = () => {
-    const newDarkMode = !isDark;
+  const applyTheme = (newDarkMode: boolean) => {
     setIsDark(newDarkMode);
     localStorage.setItem('darkMode', newDarkMode.toString());
-    
+
     if (newDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
+  };
+
+  const toggleTheme = () => {
+    const newDarkMode = !isDark;
+
+    // The View Transitions API snapshots the page before and after the DOM update,
+    // then lets us wipe between the two real snapshots — so the old (dark) and new
+    // (light) themes are both genuinely visible, split by the diagonal line, instead
+    // of a solid color sliding over an already-swapped page.
+    const doc = document as Document & { startViewTransition?: (cb: () => void) => void };
+
+    if (shouldReduceMotion || typeof doc.startViewTransition !== 'function') {
+      applyTheme(newDarkMode);
+      return;
+    }
+
+    doc.startViewTransition(() => {
+      applyTheme(newDarkMode);
+    });
   };
 
   return (

@@ -3437,3 +3437,30 @@ html {
     }
   }
 }
+
+/* Dark/light theme switch — a diagonal wipe between the real "before" and "after"
+   page snapshots that the View Transitions API captures automatically, so both
+   themes are genuinely visible on either side of the line, not a solid color panel. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+  animation: theme-diagonal-wipe 0.85s linear forwards;
+}
+
+@keyframes theme-diagonal-wipe {
+  from {
+    clip-path: polygon(-50% 116.5%, 150% 143.5%, 150% 443.5%, -50% 416.5%);
+  }
+  to {
+    clip-path: polygon(-50% -43.5%, 150% -16.5%, 150% 283.5%, -50% 256.5%);
+  }
+}
