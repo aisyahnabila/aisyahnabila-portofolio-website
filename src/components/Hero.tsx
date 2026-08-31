@@ -190,14 +190,10 @@ export function Hero() {
                 animate={shouldReduceMotion ? undefined : { y: [0, -8, 0] }}
                 transition={shouldReduceMotion ? undefined : { duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
-                {/* Clean gradient ring — a thin colored edge, no diffuse glow behind it */}
+                {/* Circular frame — solid border, no gradient */}
                 <div
-                  className="absolute -inset-[3px] rounded-full bg-gradient-to-r from-primary via-secondary to-accent transition-opacity duration-500"
-                  style={{ opacity: showRealPhoto ? 1 : 0.7 }}
-                />
-
-                {/* Circular frame */}
-                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-background shadow-lg">
+                  className={`relative w-full h-full rounded-full overflow-hidden border-4 shadow-lg transition-colors duration-500 ${showRealPhoto ? 'border-primary' : 'border-primary/60'}`}
+                >
                   {/* Base layer: illustrated avatar, always underneath */}
                   <img
                     src={profileImage}
