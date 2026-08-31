@@ -1,7 +1,9 @@
+import { useMemo, useState } from "react";
 import { Button } from "./ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import profileImage from "../assets/animation_profile.jpg";
+import realPhoto from "../assets/photo-profile.png";
 import { HeroBackgroundPattern } from "./HeroBackgroundPattern";
 
 const WHATSAPP_URL = `https://wa.me/6285156505772?text=${encodeURIComponent(
@@ -9,6 +11,14 @@ const WHATSAPP_URL = `https://wa.me/6285156505772?text=${encodeURIComponent(
 )}`;
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+const PIXEL_GRID = 8;
+const PIXEL_TILE_COUNT = PIXEL_GRID * PIXEL_GRID;
+const PIXEL_FLASH_DURATION_MS = 320;
+const PIXEL_FLASH_PEAK = 0.35;
+const PIXEL_SWAP_DELAY_S = (PIXEL_FLASH_DURATION_MS * PIXEL_FLASH_PEAK) / 1000;
+// SVG masks anti-alias each shape independently, so edge-to-edge rects can leave a
+// hairline translucent gap between them. A tiny overlap closes it without any visible distortion.
+const PIXEL_MASK_OVERLAP = 0.004;
 
 const textContainer = {
   hidden: {},
@@ -22,6 +32,30 @@ const textItem = {
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
+  const [isHovering, setIsHovering] = useState(false);
+  const [isTapped, setIsTapped] = useState(false);
+  const showRealPhoto = isHovering || isTapped;
+  const pixelDelays = useMemo(
+    () => Array.from({ length: PIXEL_TILE_COUNT }, () => Math.random() * 0.3),
+    []
+  );
+
+  // Grid cell coordinates as fractions (0-1) of the masked element's own box —
+  // used with maskContentUnits="objectBoundingBox" so the mask always lines up
+  // exactly with the single underlying photo, regardless of its rendered size.
+  const pixelCells = useMemo(
+    () =>
+      pixelDelays.map((delay, i) => {
+        const row = Math.floor(i / PIXEL_GRID);
+        const col = i % PIXEL_GRID;
+        const x0 = Math.max(0, col / PIXEL_GRID - PIXEL_MASK_OVERLAP);
+        const y0 = Math.max(0, row / PIXEL_GRID - PIXEL_MASK_OVERLAP);
+        const x1 = Math.min(1, (col + 1) / PIXEL_GRID + PIXEL_MASK_OVERLAP);
+        const y1 = Math.min(1, (row + 1) / PIXEL_GRID + PIXEL_MASK_OVERLAP);
+        return { delay, x: x0, y: y0, width: x1 - x0, height: y1 - y0 };
+      }),
+    [pixelDelays]
+  );
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
@@ -84,34 +118,121 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Profile Photo (transparent cutout, natural proportions, no crop) */}
+          {/* Right Side - Profile Photo (circular avatar; hover on desktop / tap on mobile reveals the real photo) */}
           <motion.div
-            className="flex justify-center lg:justify-end order-1 lg:order-2 mb-8 lg:mb-0"
+            className="flex flex-col items-center gap-3 justify-center lg:justify-end order-1 lg:order-2 mb-8 lg:mb-0"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
           >
-            <div className="relative flex items-center justify-center" style={{ width: 'min(58vw, 260px)' }}>
-              {/* Soft backdrop shape — keeps a transparent cutout from floating in empty space */}
-              <div
-                aria-hidden="true"
-                className="absolute rounded-full"
-                style={{
-                  inset: '-6%',
-                  background: 'radial-gradient(circle, var(--secondary) 0%, transparent 72%)',
-                  opacity: 0.18,
-                  filter: 'blur(4px)',
-                }}
-              />
-              <motion.img
-                src={profileImage}
-                alt="Aisyah Nabila - System Analyst"
-                className="relative w-full"
-                style={{ display: 'block', height: 'auto' }}
+            {/* Hidden SVG defs: two grid masks (reveal + flash) shared by the layers below.
+                Using a mask keeps the real photo as a single, un-duplicated <img> — no
+                per-tile image copies, so there's nothing to leave seams between. */}
+            <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
+              <defs>
+                <mask id="hero-pixel-reveal" maskContentUnits="objectBoundingBox">
+                  {pixelCells.map(({ delay, x, y, width, height }, i) => (
+                    <rect
+                      key={i}
+                      x={x}
+                      y={y}
+                      width={width}
+                      height={height}
+                      fill="white"
+                      style={{
+                        opacity: showRealPhoto ? 1 : 0,
+                        transitionProperty: 'opacity',
+                        transitionDuration: '1ms',
+                        transitionTimingFunction: 'linear',
+                        transitionDelay: shouldReduceMotion ? '0ms' : `${delay + PIXEL_SWAP_DELAY_S}s`,
+                      }}
+                    />
+                  ))}
+                </mask>
+                <mask id="hero-pixel-flash" maskContentUnits="objectBoundingBox">
+                  {pixelCells.map(({ delay, x, y, width, height }, i) => (
+                    <rect
+                      key={i}
+                      x={x}
+                      y={y}
+                      width={width}
+                      height={height}
+                      fill="white"
+                      style={{
+                        opacity: 0,
+                        animationName: shouldReduceMotion ? 'none' : (showRealPhoto ? 'pixel-flash-in' : 'pixel-flash-out'),
+                        animationDuration: `${PIXEL_FLASH_DURATION_MS}ms`,
+                        animationTimingFunction: 'ease-in-out',
+                        animationDelay: `${delay}s`,
+                        animationFillMode: 'both',
+                      }}
+                    />
+                  ))}
+                </mask>
+              </defs>
+            </svg>
+
+            {/* Stationary hit-test area — hover/tap listeners live here, never moves, so the
+                bounce animation below can't make hover flicker on and off at the edges */}
+            <div
+              className="relative flex items-center justify-center cursor-pointer select-none"
+              style={{ width: 'min(64vw, 280px)', height: 'min(64vw, 280px)' }}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => {
+                setIsHovering(false);
+                setIsTapped(false);
+              }}
+              onClick={() => setIsTapped((v) => !v)}
+            >
+              {/* Purely visual bounce — decoupled from the hit-test area above */}
+              <motion.div
+                className="relative w-full h-full"
                 animate={shouldReduceMotion ? undefined : { y: [0, -8, 0] }}
                 transition={shouldReduceMotion ? undefined : { duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              />
+              >
+                {/* Clean gradient ring — a thin colored edge, no diffuse glow behind it */}
+                <div
+                  className="absolute -inset-[3px] rounded-full bg-gradient-to-r from-primary via-secondary to-accent transition-opacity duration-500"
+                  style={{ opacity: showRealPhoto ? 1 : 0.7 }}
+                />
+
+                {/* Circular frame */}
+                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-background shadow-lg">
+                  {/* Base layer: illustrated avatar, always underneath */}
+                  <img
+                    src={profileImage}
+                    alt="Aisyah Nabila - illustrated avatar"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ objectPosition: '50% 15%' }}
+                  />
+
+                  {/* Opaque backing so the transparent edges of the photo cutout don't let the illustration bleed through */}
+                  <div
+                    className="absolute inset-0 bg-background pointer-events-none"
+                    style={{ maskImage: 'url(#hero-pixel-reveal)', WebkitMaskImage: 'url(#hero-pixel-reveal)' }}
+                  />
+
+                  {/* Real photo — a single image, revealed tile-by-tile through the mask (no duplicated/clipped copies) */}
+                  <img
+                    src={realPhoto}
+                    alt="Aisyah Nabila - System Analyst"
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                    style={{
+                      objectPosition: '50% 8%',
+                      maskImage: 'url(#hero-pixel-reveal)',
+                      WebkitMaskImage: 'url(#hero-pixel-reveal)',
+                    }}
+                  />
+
+                  {/* Flash overlay: a blank block pulses over each tile right as it swaps */}
+                  <div
+                    className="absolute inset-0 bg-background pointer-events-none"
+                    style={{ maskImage: 'url(#hero-pixel-flash)', WebkitMaskImage: 'url(#hero-pixel-flash)' }}
+                  />
+                </div>
+              </motion.div>
             </div>
+            <span className="text-xs text-muted-foreground md:hidden">Tap the photo to reveal</span>
           </motion.div>
         </div>
 
