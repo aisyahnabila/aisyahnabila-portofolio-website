@@ -79,31 +79,28 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-primary/50 to-secondary/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative flex items-center gap-2 px-3 py-2 bg-primary/10 rounded-lg border border-primary/20">
-                <span
-                  className="h-8 w-8 shrink-0 bg-primary"
-                  style={{
-                    WebkitMaskImage: `url(${logoPortofolio})`,
-                    maskImage: `url(${logoPortofolio})`,
-                    WebkitMaskSize: 'contain',
-                    maskSize: 'contain',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskRepeat: 'no-repeat',
-                    WebkitMaskPosition: 'center',
-                    maskPosition: 'center',
-                  }}
-                  aria-hidden="true"
-                />
-                <span className="font-mono font-bold text-primary">
-                  Aisyah Nabila
-                </span>
-              </div>
+            <div className="relative flex items-center gap-2 px-2 py-1">
+              <span
+                className="h-8 w-8 shrink-0 bg-primary"
+                style={{
+                  WebkitMaskImage: `url(${logoPortofolio})`,
+                  maskImage: `url(${logoPortofolio})`,
+                  WebkitMaskSize: 'contain',
+                  maskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                  maskPosition: 'center',
+                }}
+                aria-hidden="true"
+              />
+              <span className="font-mono font-bold text-primary">
+                Aisyah Nabila
+              </span>
             </div>
           </motion.button>
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-2 bg-card/50 backdrop-blur-sm rounded-full px-2 py-2 border border-border/50">
+          <nav className="hidden md:flex items-center gap-2 px-2 py-2">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.id}
@@ -137,9 +134,9 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
                 aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
                 aria-pressed={isDark}
                 style={{ width: 44, height: 44 }}
-                className="p-0 rounded-full bg-muted/50 hover:bg-muted border border-border/50 hover:border-primary/30 hover:scale-110 transition-all duration-300"
+                className="p-0 rounded-full bg-transparent hover:bg-muted/50 dark:hover:bg-muted/50 hover:text-foreground border border-transparent hover:border-border/50 hover:scale-110 transition-all duration-300"
               >
-                {isDark ? <Sun className="h-4 w-4 text-secondary" /> : <Moon className="h-4 w-4 text-primary" />}
+                {isDark ? <Sun className="h-4 w-4 text-primary" /> : <Moon className="h-4 w-4 text-primary" />}
               </Button>
             </motion.div>
 
@@ -153,7 +150,7 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
                 variant="ghost"
                 size="sm"
                 style={{ width: 44, height: 44 }}
-                className="p-0 rounded-full bg-muted/50 hover:bg-muted border border-border/50"
+                className="p-0 rounded-full bg-transparent hover:bg-muted/50 dark:hover:bg-muted/50 hover:text-foreground border border-transparent hover:border-border/50 transition-all duration-300"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}

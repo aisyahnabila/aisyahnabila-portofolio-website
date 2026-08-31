@@ -3400,3 +3400,40 @@ html {
   35% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+/* Header icon-button hover states. Kept unlayered (outside @layer utilities) so they
+   reliably win over the shadcn Button "ghost" variant's own hover:bg-accent /
+   dark:hover:bg-accent rules — these weren't in the pre-built utility set above and
+   this project has no live Tailwind build step to generate them on demand. */
+@media (hover: hover) {
+  .hover\:bg-muted\/50:hover {
+    background-color: var(--muted);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .hover\:bg-muted\/50:hover {
+      background-color: color-mix(in oklab, var(--muted) 50%, transparent);
+    }
+  }
+
+  .dark\:hover\:bg-muted\/50:is(.dark *):hover {
+    background-color: var(--muted);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:hover\:bg-muted\/50:is(.dark *):hover {
+      background-color: color-mix(in oklab, var(--muted) 50%, transparent);
+    }
+  }
+
+  .hover\:text-foreground:hover {
+    color: var(--foreground);
+  }
+
+  .hover\:border-border\/50:hover {
+    border-color: var(--border);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .hover\:border-border\/50:hover {
+      border-color: color-mix(in oklab, var(--border) 50%, transparent);
+    }
+  }
+}
