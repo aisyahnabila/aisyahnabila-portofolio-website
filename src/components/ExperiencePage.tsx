@@ -9,7 +9,7 @@ interface ExperiencePageProps {
 export function ExperiencePage({ onBack }: ExperiencePageProps) {
   const experiences = [
     {
-      title: "Technical Writer (System Analyst Support)",
+      title: "Technical Writer",
       company: "PT Sistem Informatika Semen Indonesia",
       location: "Gresik, Indonesia",
       period: "Nov 2025 - May 2026",

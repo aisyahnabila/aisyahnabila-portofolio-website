@@ -1,159 +1,94 @@
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
 import { motion } from "motion/react";
-import { Code, Server, Database, LineChart, Wrench, Sparkles } from "lucide-react";
+
+const skillCategories = [
+  {
+    title: "System Analysis",
+    skills: [
+      "Requirement Gathering", "Use Case Diagram", "BPMN", "ERD",
+      "Business Process Modeling", "System Documentation"
+    ]
+  },
+  {
+    title: "System Testing",
+    skills: [
+      "Unit Testing", "Functional Testing", "User Acceptance Testing", "System Integration Testing"
+    ]
+  },
+  {
+    title: "Backend and API",
+    skills: [
+      "Laravel", "PHP", "REST API", "MVC Architecture",
+      "JavaScript", "Tailwind CSS"
+    ]
+  },
+  {
+    title: "Database",
+    skills: [
+      "MySQL", "PostgreSQL", "SQL Server", "Data Validation",
+      "Reporting Data Accuracy"
+    ]
+  },
+  {
+    title: "Tools and Reporting",
+    skills: [
+      "Draw.io", "Visual Paradigm", "ClickUp", "Tableau", "Power BI", "SPSS", "Odoo ERP"
+    ]
+  }
+];
 
 export function Skills() {
-  const skillCategories = [
-    {
-      title: "System Analysis",
-      color: "blue",
-      bgColor: "bg-blue-500/10",
-      borderColor: "border-blue-500/20",
-      textColor: "text-blue-500",
-      hoverBorder: "hover:border-blue-500/30",
-      glowColor: "from-blue-500/50 to-blue-500/30",
-      icon: LineChart,
-      skills: [
-        "Requirement Gathering", "Use Case Diagram", "BPMN", "ERD",
-        "Business Process Modeling", "System Documentation"
-      ]
-    },
-    {
-      title: "System Testing",
-      color: "emerald",
-      bgColor: "bg-emerald-500/10",
-      borderColor: "border-emerald-500/20",
-      textColor: "text-emerald-500",
-      hoverBorder: "hover:border-emerald-500/30",
-      glowColor: "from-emerald-500/50 to-emerald-500/30",
-      icon: Code,
-      skills: [
-        "Unit Testing", "Functional Testing", "User Acceptance Testing", "System Integration Testing"
-      ]
-    },
-    {
-      title: "Backend and API",
-      color: "purple",
-      bgColor: "bg-purple-500/10",
-      borderColor: "border-purple-500/20",
-      textColor: "text-purple-500",
-      hoverBorder: "hover:border-purple-500/30",
-      glowColor: "from-purple-500/50 to-purple-500/30",
-      icon: Server,
-      skills: [
-        "Laravel", "PHP", "REST API", "MVC Architecture",
-        "JavaScript", "Tailwind CSS"
-      ]
-    },
-    {
-      title: "Database",
-      color: "orange",
-      bgColor: "bg-orange-500/10",
-      borderColor: "border-orange-500/20",
-      textColor: "text-orange-500",
-      hoverBorder: "hover:border-orange-500/30",
-      glowColor: "from-orange-500/50 to-orange-500/30",
-      icon: Database,
-      skills: [
-        "MySQL", "PostgreSQL", "SQL Server", "Data Validation",
-        "Reporting Data Accuracy"
-      ]
-    },
-    {
-      title: "Tools and Reporting",
-      color: "cyan",
-      bgColor: "bg-cyan-500/10",
-      borderColor: "border-cyan-500/20",
-      textColor: "text-cyan-500",
-      hoverBorder: "hover:border-cyan-500/30",
-      glowColor: "from-cyan-500/50 to-cyan-500/30",
-      icon: Wrench,
-      skills: [
-        "Draw.io", "Visual Paradigm", "ClickUp", "Tableau", "Power BI", "SPSS", "Odoo ERP"
-      ]
-    }
-  ];
-
   return (
-    <section id="skills" className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background with gradient mesh */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 -z-10"></div>
-      <div className="absolute inset-0 opacity-20 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 sm:w-96 sm:h-96 bg-blue-500/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 sm:w-96 sm:h-96 bg-emerald-500/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl animate-blob animation-delay-2000"></div>
-      </div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="skills" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          className="text-center mb-12 sm:mb-16"
+          className="mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }} >
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Core Competencies
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            Skills
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto px-4 py-4">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl">
             Core capabilities in system analysis, testing support, and technical
             implementation for business-focused solutions.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div>
           {skillCategories.map((category, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+              key={category.title}
+              className={[
+                index > 0 ? 'pt-8' : '',
+                index < skillCategories.length - 1 ? 'border-b border-border/50 pb-8' : '',
+              ].join(' ').trim()}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="group relative"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
             >
-              {/* Glowing border effect */}
-              <div className={`absolute -inset-0.5 bg-gradient-to-r ${category.glowColor} rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500`}></div>
-
-              <Card className={`relative h-full bg-white dark:bg-slate-900/90 backdrop-blur-md border-2 border-slate-200 dark:border-slate-700 ${category.hoverBorder} hover:shadow-2xl transition-all duration-300 overflow-hidden`}>
-                {/* Shine effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/10 to-transparent"></div>
-
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2.5 rounded-lg ${category.bgColor} border ${category.borderColor} group-hover:scale-110 transition-transform duration-300`}>
-                      <category.icon className={`h-5 w-5 ${category.textColor}`} />
-                    </div>
-                    <CardTitle className="text-lg font-bold text-slate-900 dark:text-white">
-                      {category.title}
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skillIndex}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        <Badge
-                          variant="secondary"
-                          className={`text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-700 ${category.hoverBorder} transition-all duration-200 cursor-default px-3 py-1`}
-                        >
-                          {skill}
-                        </Badge>
-                      </motion.div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <p className="text-xs font-semibold tracking-wide uppercase text-muted-foreground mb-4">
+                {category.title}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {category.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-foreground/30 text-sm text-foreground transition-colors duration-200 hover:bg-muted/50 dark:hover:bg-muted/50"
+                  >
+                    <span
+                      className="rounded-full bg-primary shrink-0"
+                      style={{ width: 6, height: 6 }}
+                    />
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
