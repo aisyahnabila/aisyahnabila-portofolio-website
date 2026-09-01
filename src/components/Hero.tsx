@@ -201,12 +201,7 @@ export function Hero() {
               }}
               onClick={() => setIsTapped((v) => !v)}
             >
-              {/* Purely visual bounce — decoupled from the hit-test area above */}
-              <motion.div
-                className="relative w-full h-full"
-                animate={shouldReduceMotion ? undefined : { y: [0, -8, 0] }}
-                transition={shouldReduceMotion ? undefined : { duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
+              <div className="relative w-full h-full">
                 {/* Circular frame — solid border, no gradient */}
                 <div
                   className={`relative w-full h-full rounded-full overflow-hidden border-4 shadow-lg transition-colors duration-500 ${showRealPhoto ? 'border-primary' : 'border-primary/60'}`}
@@ -243,7 +238,7 @@ export function Hero() {
                     style={{ maskImage: 'url(#hero-pixel-flash)', WebkitMaskImage: 'url(#hero-pixel-flash)' }}
                   />
                 </div>
-              </motion.div>
+              </div>
             </div>
             <span className="text-xs text-muted-foreground md:hidden">Tap the photo to reveal</span>
           </motion.div>
