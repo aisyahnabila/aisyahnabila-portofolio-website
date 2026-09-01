@@ -3464,3 +3464,32 @@ html {
     clip-path: polygon(-50% -43.5%, 150% -16.5%, 150% 283.5%, -50% 256.5%);
   }
 }
+
+/* Experience preview (About section) — utilities not present in the pre-built set above. */
+.pt-0\.5 {
+  padding-top: calc(var(--spacing) * 0.5);
+}
+
+.leading-snug {
+  line-height: 1.375;
+}
+
+.text-foreground\/90 {
+  color: var(--foreground);
+}
+@supports (color: color-mix(in lab, red, red)) {
+  .text-foreground\/90 {
+    color: color-mix(in oklab, var(--foreground) 90%, transparent);
+  }
+}
+
+@media (hover: hover) {
+  .hover\:text-primary\/80:hover {
+    color: var(--primary);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .hover\:text-primary\/80:hover {
+      color: color-mix(in oklab, var(--primary) 80%, transparent);
+    }
+  }
+}

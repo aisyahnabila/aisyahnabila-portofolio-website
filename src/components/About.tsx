@@ -1,45 +1,36 @@
-import { Card, CardContent } from "./ui/card";
-import { Code, Database, Users, Lightbulb, Sparkles } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 
-export function About() {
-  const features = [
+interface AboutProps {
+  onViewDetails: () => void;
+}
+
+export function About({ onViewDetails }: AboutProps) {
+  const experiences = [
     {
-      icon: Code,
-      title: "Requirement Analysis",
-      description: "Gathering and structuring business needs into clear system requirements",
-      glow: "from-primary/50 to-primary/30",
-      hoverBorder: "group-hover:border-primary/30",
-      iconWrap: "bg-primary/10 border-primary/20",
-      iconColor: "text-primary"
+      title: "Technical Writer (System Analyst Support)",
+      company: "PT Sistem Informatika Semen Indonesia",
+      location: "Gresik, Indonesia",
+      period: "Nov 2025 - May 2026",
     },
     {
-      icon: Database,
-      title: "Process Modeling",
-      description: "Designing BPMN, use case, and ERD artifacts for system clarity",
-      glow: "from-secondary/50 to-secondary/30",
-      hoverBorder: "group-hover:border-secondary/30",
-      iconWrap: "bg-secondary/10 border-secondary/20",
-      iconColor: "text-secondary"
+      title: "Internship Web Developer",
+      company: "Dinas Sosial Provinsi Jawa Timur",
+      location: "Surabaya, Indonesia",
+      period: "Jul 2024 - Sep 2024",
     },
     {
-      icon: Users,
-      title: "Testing Support",
-      description: "Supporting UAT and SIT to validate solutions before implementation",
-      glow: "from-accent/50 to-accent/30",
-      hoverBorder: "group-hover:border-accent/30",
-      iconWrap: "bg-accent/10 border-accent/20",
-      iconColor: "text-accent"
+      title: "Odoo Engineer Intern",
+      company: "PT Insan Sejahtera Engineering",
+      location: "Sidoarjo, Indonesia",
+      period: "Feb 2024 - Jul 2024",
     },
     {
-      icon: Lightbulb,
-      title: "Collaboration",
-      description: "Aligning stakeholders, users, and developers toward delivery goals",
-      glow: "from-primary/50 to-primary/30",
-      hoverBorder: "group-hover:border-primary/30",
-      iconWrap: "bg-primary/10 border-primary/20",
-      iconColor: "text-primary"
-    }
+      title: "Independent Study - Data Analyst for Business",
+      company: "MSIB Kampus Merdeka",
+      location: "Surabaya, Indonesia",
+      period: "Mar 2024 - May 2024",
+    },
   ];
 
   return (
@@ -52,88 +43,55 @@ export function About() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div 
-          className="text-center mb-16"
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }} >
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            About Me
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            I focus on translating business needs into clear system specifications and
-            actionable workflows that support reliable implementation.
-          </p>
-        </motion.div>
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-bold text-foreground">
+              Experience
+            </h2>
+            <button
+              type="button"
+              onClick={onViewDetails}
+              className="flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
+            >
+              View Details
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-2xl blur-xl"></div>
-              <div className="relative p-8 bg-card/50 backdrop-blur-md rounded-2xl border border-border/50">
-                <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
-                  What I Focus On
-                </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  I am a System Analyst with practical experience from internships and
-                  project-based work. My core strengths include requirement discussions,
-                  business process analysis, and system documentation.
-                </p>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  I support key activities across the system development lifecycle,
-                  including BPMN and ERD modeling, user validation through UAT and SIT,
-                  and communication between technical and non-technical stakeholders.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  With implementation exposure in web-based systems, I ensure analysis
-                  outputs remain realistic, measurable, and aligned with business goals.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-          
-          <div className="grid grid-cols-2 gap-4">
-            {features.map((feature, index) => (
+          <div className="space-y-8">
+            {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                className="group relative"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                className="grid gap-4"
+                style={{ gridTemplateColumns: 'minmax(0, 7.5rem) 1fr' }}
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.05 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
               >
-                {/* Glowing border effect */}
-                <div className={`absolute -inset-0.5 bg-gradient-to-r ${feature.glow} rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500`}></div>
-
-                <Card className={`relative h-full bg-card/50 backdrop-blur-md border-border/50 ${feature.hoverBorder} transition-all duration-300`}>
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/5 to-transparent rounded-2xl"></div>
-
-                  <CardContent className="p-6 text-center relative">
-                    <motion.div
-                      className={`inline-flex items-center justify-center w-16 h-16 ${feature.iconWrap} rounded-xl border mx-auto mb-3`}
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <feature.icon className={`h-8 w-8 ${feature.iconColor}`} />
-                    </motion.div>
-                    <h4 className="font-semibold text-foreground mb-2">{feature.title}</h4>
-                    <p className="text-sm text-muted-foreground">
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                <span className="text-sm text-muted-foreground pt-0.5">
+                  {exp.period}
+                </span>
+                <div>
+                  <h3 className="font-bold text-foreground leading-snug">
+                    {exp.title}
+                  </h3>
+                  <p className="font-semibold text-foreground/90">
+                    {exp.company}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {exp.location}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

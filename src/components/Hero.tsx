@@ -120,7 +120,7 @@ export function Hero() {
                 onClick={scrollToProjects}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 sm:px-8 py-3 sm:py-4 text-base font-semibold rounded-xl shadow-xl transition-colors duration-200"
               >
-                View 3 Case Studies
+                View Projects
               </Button>
               <Button
                 variant="outline"

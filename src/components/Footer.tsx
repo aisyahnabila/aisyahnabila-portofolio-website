@@ -1,18 +1,11 @@
 import { Github, Linkedin } from "lucide-react";
 
-export function Footer() {
-  const currentYear = new Date().getFullYear();
+interface FooterProps {
+  onNavigate: (sectionId: string) => void;
+}
 
-  const scrollToSection = (sectionId: string) => {
-    try {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } catch (error) {
-      console.log('Scroll error:', error);
-    }
-  };
+export function Footer({ onNavigate }: FooterProps) {
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-card border-t py-12 px-4 sm:px-6 lg:px-8">
@@ -34,31 +27,31 @@ export function Footer() {
             <h4 className="font-semibold text-foreground">Quick Links</h4>
             <nav className="flex flex-col space-y-2">
               <button 
-                onClick={() => scrollToSection('about')}
+                onClick={() => onNavigate('about')}
                 className="text-muted-foreground hover:text-primary transition-colors text-left"
               >
                 About
               </button>
               <button 
-                onClick={() => scrollToSection('skills')}
+                onClick={() => onNavigate('skills')}
                 className="text-muted-foreground hover:text-primary transition-colors text-left"
               >
                 Skills
               </button>
               <button 
-                onClick={() => scrollToSection('projects')}
+                onClick={() => onNavigate('projects')}
                 className="text-muted-foreground hover:text-primary transition-colors text-left"
               >
                 Projects
               </button>
               <button 
-                onClick={() => scrollToSection('experience')}
+                onClick={() => onNavigate('experience')}
                 className="text-muted-foreground hover:text-primary transition-colors text-left"
               >
                 Experience
               </button>
               <button 
-                onClick={() => scrollToSection('contact')}
+                onClick={() => onNavigate('contact')}
                 className="text-muted-foreground hover:text-primary transition-colors text-left"
               >
                 Contact

@@ -7,20 +7,28 @@ import logoPortofolio from "../assets/logo_portofolio.png";
 interface HeaderProps {
   isDark: boolean;
   toggleTheme: () => void;
+  page: 'home' | 'experience';
+  onNavigate: (sectionId: string) => void;
 }
 
-export function Header({ isDark, toggleTheme }: HeaderProps) {
+export function Header({ isDark, toggleTheme, page, onNavigate }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [scrolledActiveSection, setScrolledActiveSection] = useState('home');
+
+  // The Experience page is a separate view, not a section on the home page —
+  // while on it, force that nav item active instead of tracking scroll position.
+  const activeSection = page === 'experience' ? 'experience' : scrolledActiveSection;
 
   useEffect(() => {
     const handleScroll = () => {
       // Header akan muncul glassmorphism setelah scroll 100px
       setIsScrolled(window.scrollY > 100);
 
+      if (page === 'experience') return;
+
       // Detect active section based on scroll position
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 100; // offset untuk header
 
       for (const sectionId of sections) {
@@ -30,7 +38,7 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
           const offsetHeight = element.offsetHeight;
 
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId);
+            setScrolledActiveSection(sectionId);
             break;
           }
         }
@@ -39,28 +47,18 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [page]);
 
-  const scrollToSection = (sectionId: string) => {
-    try {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        setActiveSection(sectionId); // Set active saat diklik
-      }
-      setIsMenuOpen(false);
-    } catch (error) {
-      console.log('Scroll error:', error);
-      setIsMenuOpen(false);
-    }
+  const handleNavClick = (sectionId: string) => {
+    onNavigate(sectionId);
+    setIsMenuOpen(false);
   };
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
+    { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -75,7 +73,7 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
             type="button"
             aria-label="Go to home section"
             className="flex items-center gap-2 group cursor-pointer"
-            onClick={() => scrollToSection('home')}
+            onClick={() => handleNavClick('home')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -104,7 +102,7 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
             {navItems.map((item, index) => (
               <motion.button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavClick(item.id)}
                 className={`relative px-4 py-2 text-sm transition-colors rounded-full ${activeSection === item.id
                     ? 'text-white bg-primary'
                     : 'text-foreground hover:text-primary'
@@ -174,7 +172,7 @@ export function Header({ isDark, toggleTheme }: HeaderProps) {
                   {navItems.map((item, index) => (
                     <motion.button
                       key={item.id}
-                      onClick={() => scrollToSection(item.id)}
+                      onClick={() => handleNavClick(item.id)}
                       className={`text-left px-4 py-3 rounded-lg transition-colors ${activeSection === item.id
                         ? 'bg-primary/10 text-primary font-medium'
                         : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'

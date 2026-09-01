@@ -5,13 +5,51 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
-import { Experience } from './components/Experience';
+import { ExperiencePage } from './components/ExperiencePage';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 
+const EXPERIENCE_HASH = '#experience-page';
+
 export default function App() {
   const [isDark, setIsDark] = useState(true); // Default: dark mode
+  const [page, setPage] = useState<'home' | 'experience'>(() =>
+    window.location.hash === EXPERIENCE_HASH ? 'experience' : 'home'
+  );
   const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const onHashChange = () => {
+      setPage(window.location.hash === EXPERIENCE_HASH ? 'experience' : 'home');
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  // Handles both in-page section links (home page) and the dedicated Experience
+  // page. When navigating to a home-page section from the Experience page, it
+  // switches back to home first, then scrolls once that content has mounted.
+  const navigateTo = (sectionId: string) => {
+    if (sectionId === 'experience') {
+      window.location.hash = EXPERIENCE_HASH;
+      setPage('experience');
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    if (page === 'experience') {
+      window.location.hash = '';
+      setPage('home');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+      return;
+    }
+
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
     // Cek localStorage, jika tidak ada maka default dark mode
@@ -58,16 +96,19 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header isDark={isDark} toggleTheme={toggleTheme} />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
-      <Footer />
+      <Header isDark={isDark} toggleTheme={toggleTheme} page={page} onNavigate={navigateTo} />
+      {page === 'experience' ? (
+        <ExperiencePage onBack={() => navigateTo('home')} />
+      ) : (
+        <main>
+          <Hero />
+          <About onViewDetails={() => navigateTo('experience')} />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+      )}
+      <Footer onNavigate={navigateTo} />
     </div>
   );
 }
