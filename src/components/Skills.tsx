@@ -50,9 +50,8 @@ export function Skills() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Skills
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl">
-            Core capabilities in system analysis, testing support, and technical
-            implementation for business-focused solutions.
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3/12">
+            Core capabilities in system analysis, testing support, and technical implementation for business-focused solutions.
           </p>
         </motion.div>
 
