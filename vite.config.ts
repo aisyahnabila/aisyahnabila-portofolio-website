@@ -4,7 +4,11 @@
   import path from 'path';
 
   export default defineConfig({
-    base: '/aisyahnabila-portofolio-website/',
+    // GitHub Pages serves this site from a /aisyahnabila-portofolio-website/
+    // subpath, but Vercel serves it from the domain root — Vercel sets the
+    // VERCEL env var during its build, so branch on that instead of
+    // maintaining two separate configs.
+    base: process.env.VERCEL ? '/' : '/aisyahnabila-portofolio-website/',
     plugins: [react()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
