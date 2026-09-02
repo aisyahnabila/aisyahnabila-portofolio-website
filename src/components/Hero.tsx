@@ -5,10 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import profileImage from "../assets/animation_profile.jpg";
 import realPhoto from "../assets/photo-profile.png";
 import { HeroBackgroundPattern } from "./HeroBackgroundPattern";
-
-const WHATSAPP_URL = `https://wa.me/6285156505772?text=${encodeURIComponent(
-  "Hi Aisyah, I'd like to schedule a 15-minute chat about a project."
-)}`;
+import { WHATSAPP_URL, EMAIL_MAILTO } from "../lib/contact";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const PIXEL_GRID = 8;
@@ -254,7 +251,7 @@ export function Hero() {
           <div className="flex justify-center gap-2">
             {[
               { icon: Linkedin, url: "https://linkedin.com/in/aisyah-nabila-zahra-0a6046226/", label: "LinkedIn" },
-              { icon: Mail, url: "mailto:aisyahnabilaz514@gmail.com", label: "Email" },
+              { icon: Mail, url: EMAIL_MAILTO, label: "Email" },
               { icon: Github, url: "https://github.com/aisyahnabila", label: "GitHub" }
             ].map((social, index) => (
               <a

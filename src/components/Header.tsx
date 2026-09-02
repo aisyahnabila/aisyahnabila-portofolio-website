@@ -38,7 +38,9 @@ export function Header({ isDark, toggleTheme, page, onNavigate }: HeaderProps) {
           const offsetHeight = element.offsetHeight;
 
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setScrolledActiveSection(sectionId);
+            // The "about" section now renders as the Experience preview, so it
+            // should light up the "Experience" nav item, not a nonexistent "about" one.
+            setScrolledActiveSection(sectionId === 'about' ? 'experience' : sectionId);
             break;
           }
         }

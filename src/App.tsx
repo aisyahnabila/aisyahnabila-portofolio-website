@@ -110,7 +110,7 @@ export default function App() {
           <Contact />
         </main>
       )}
-      <Footer onNavigate={navigateTo} />
+      <Footer />
     </div>
   );
 }
