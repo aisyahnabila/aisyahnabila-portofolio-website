@@ -4,8 +4,7 @@ const skillCategories = [
   {
     title: "System Analysis",
     skills: [
-      "Requirement Gathering", "Use Case Diagram", "BPMN", "ERD",
-      "Business Process Modeling", "System Documentation"
+      "Requirement Gathering", "Use Case Diagram", "BPMN", "ERD", "System Documentation"
     ]
   },
   {

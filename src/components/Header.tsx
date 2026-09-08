@@ -27,24 +27,35 @@ export function Header({ isDark, toggleTheme, page, onNavigate }: HeaderProps) {
 
       if (page === 'experience') return;
 
-      // Detect active section based on scroll position
+      // Once scrolled to (or very near) the bottom of the page, the +100
+      // look-ahead offset below can overshoot past a short last section
+      // (Contact) and never actually enter its range — window.scrollY caps
+      // out before scrollPosition ever reaches Contact's offsetTop. Handle
+      // that case directly instead of relying on the offset math there.
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (atBottom) {
+        setScrolledActiveSection('contact');
+        return;
+      }
+
+      // Detect active section based on scroll position — pick the last
+      // section whose top has been scrolled past, rather than requiring the
+      // scroll position to also stay within that section's exact height
+      // (which breaks if a section's rendered height doesn't line up with
+      // the +100 look-ahead offset).
       const sections = ['home', 'about', 'skills', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 100; // offset untuk header
 
+      let current = sections[0];
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            // The "about" section now renders as the Experience preview, so it
-            // should light up the "Experience" nav item, not a nonexistent "about" one.
-            setScrolledActiveSection(sectionId === 'about' ? 'experience' : sectionId);
-            break;
-          }
+        if (element && element.offsetTop <= scrollPosition) {
+          current = sectionId;
         }
       }
+      // The "about" section now renders as the Experience preview, so it
+      // should light up the "Experience" nav item, not a nonexistent "about" one.
+      setScrolledActiveSection(current === 'about' ? 'experience' : current);
     };
 
     window.addEventListener('scroll', handleScroll);

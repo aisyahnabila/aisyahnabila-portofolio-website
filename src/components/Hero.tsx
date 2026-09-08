@@ -124,7 +124,7 @@ export function Hero() {
                 onClick={() => window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer')}
                 className="border-2 border-border text-foreground hover:bg-muted px-6 sm:px-8 py-3 sm:py-4 text-base font-semibold rounded-xl transition-colors duration-200"
               >
-                Book a 15-Min Project Chat
+                Book a Project Chat
               </Button>
             </motion.div>
           </motion.div>
