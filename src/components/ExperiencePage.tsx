@@ -12,7 +12,7 @@ export function ExperiencePage({ onBack }: ExperiencePageProps) {
       title: "Technical Writer",
       company: "PT Sistem Informatika Semen Indonesia",
       location: "Gresik, Indonesia",
-      period: "Nov 2025 - May 2026",
+      period: "Nov 2025 - Jul 2026",
       description: [
         "Developed Project Charter, Blueprint, and Technical Specification documentation.",
         "Conducted requirement discussions with stakeholders to define system needs.",
@@ -92,23 +92,32 @@ export function ExperiencePage({ onBack }: ExperiencePageProps) {
 
         <div className="relative">
           {/* Connecting timeline line */}
-          <div className="absolute left-[5px] top-2 bottom-2 w-px bg-border" aria-hidden="true" />
+          <div
+            className="absolute"
+            style={{ left: 5, top: 8, bottom: 8, width: 1, backgroundColor: 'var(--foreground)', opacity: 0.25 }}
+            aria-hidden="true"
+          />
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                className="relative pl-8"
+                className="relative"
+                style={{ paddingLeft: 32 }}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
               >
                 {/* Timeline dot */}
-                <span className="absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full bg-foreground" aria-hidden="true" />
+                <span
+                  className="absolute rounded-full"
+                  style={{ left: 0, top: 6, height: 10, width: 10, backgroundColor: 'var(--foreground)' }}
+                  aria-hidden="true"
+                />
 
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                  <CalendarDays className="h-3.5 w-3.5" />
+                  <CalendarDays className="h-4 w-4" />
                   <span>{exp.period}</span>
                 </div>
 
@@ -119,14 +128,17 @@ export function ExperiencePage({ onBack }: ExperiencePageProps) {
                   {exp.company}
                 </h3>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                  <MapPin className="h-3.5 w-3.5" />
+                  <MapPin className="h-4 w-4" />
                   <span>{exp.location}</span>
                 </div>
 
                 <ul className="space-y-2 mb-4">
                   {exp.description.map((item, itemIndex) => (
                     <li key={itemIndex} className="text-muted-foreground flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 bg-secondary rounded-full mt-2 flex-shrink-0" />
+                      <span
+                        className="bg-secondary rounded-full mt-2 flex-shrink-0"
+                        style={{ width: 6, height: 6 }}
+                      />
                       <span>{item}</span>
                     </li>
                   ))}
