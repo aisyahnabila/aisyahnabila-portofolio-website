@@ -26,10 +26,14 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="bg-card border-t py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p className="text-muted-foreground text-center sm:text-left">
-          Aisyah Nabila / Available for remote work / Sidoarjo, INA.
+    <footer className="site-footer">
+      <div className="site-footer__inner">
+        <p className="site-footer__info">
+          <span className="site-footer__name">Aisyah Nabila</span>
+          <span className="site-footer__sep">/</span>
+          <span className="site-footer__accent">Available for remote work</span>
+          <span className="site-footer__sep">/</span>
+          <span>Sidoarjo, INA.</span>
         </p>
 
         {visitorCount !== null && (
