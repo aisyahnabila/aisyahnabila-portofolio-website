@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import profileImage from "../assets/animation_profile.jpg";
 import realPhoto from "../assets/photo-profile.png";
 import { HeroBackgroundPattern } from "./HeroBackgroundPattern";
+import { HeroAsciiDots, useIsDarkMode } from "./HeroAsciiDots";
 import { WHATSAPP_URL, EMAIL_MAILTO } from "../lib/contact";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -29,6 +30,7 @@ const textItem = {
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
+  const isDark = useIsDarkMode();
   const [isHovering, setIsHovering] = useState(false);
   const [isTapped, setIsTapped] = useState(false);
   const showRealPhoto = isHovering || isTapped;
@@ -75,7 +77,7 @@ export function Hero() {
   return (
     <section id="home" className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-[#0a0e27] dark:via-[#0f172a] dark:to-[#000000]">
       {/* Backdrop: real BPMN/ERD notation instead of generic floating icons */}
-      <HeroBackgroundPattern />
+      {isDark ? <HeroAsciiDots /> : <HeroBackgroundPattern />}
 
       {/* Main Content Container — padded to clear the fixed header */}
       <div

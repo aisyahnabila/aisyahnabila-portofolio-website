@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useReducedMotion } from 'motion/react';
-import { CanvasCursor } from './components/CanvasCursor';
+import { SmoothCursorFollower } from './components/SmoothCursorFollower';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -97,7 +97,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      <CanvasCursor />
+      <SmoothCursorFollower />
       <Header isDark={isDark} toggleTheme={toggleTheme} page={page} onNavigate={navigateTo} />
       {page === 'experience' ? (
         <ExperiencePage onBack={() => navigateTo('home')} />
