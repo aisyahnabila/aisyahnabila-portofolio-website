@@ -11,7 +11,7 @@ export function About({ onViewDetails }: AboutProps) {
       title: "Technical Writer",
       company: "PT Sistem Informatika Semen Indonesia",
       location: "Gresik, Indonesia",
-      period: "Nov 2025 - May 2026",
+      period: "Nov 2025 - Jul 2026",
     },
     {
       title: "Internship Web Developer",
