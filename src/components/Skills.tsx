@@ -4,33 +4,39 @@ const skillCategories = [
   {
     title: "System Analysis",
     skills: [
-      "Requirement Gathering", "Use Case Diagram", "BPMN", "ERD", "System Documentation"
+      "Requirements Gathering", "Business Process Modeling", "Use Case Diagram", "BPMN", "ERD"
     ]
   },
   {
-    title: "System Testing",
+    title: "Quality Assurance",
     skills: [
-      "Unit Testing", "Functional Testing", "User Acceptance Testing", "System Integration Testing"
+      "Manual Testing", "Functional Testing", "Regression Testing",
+      "System Integration Testing (SIT)", "User Acceptance Testing (UAT)", "Bug Reporting"
     ]
   },
   {
-    title: "Backend and API",
+    title: "Technical Writing",
     skills: [
-      "Laravel", "PHP", "REST API", "MVC Architecture",
-      "JavaScript", "Tailwind CSS"
+      "Technical Specifications", "System Blueprint", "User Guides",
+      "Project Documentation", "Issue Logs", "Change Requests"
     ]
   },
   {
-    title: "Database",
+    title: "Web Development & API",
     skills: [
-      "MySQL", "PostgreSQL", "SQL Server", "Data Validation",
-      "Reporting Data Accuracy"
+      "PHP", "Laravel", "JavaScript", "REST API", "Tailwind CSS"
     ]
   },
   {
-    title: "Tools and Reporting",
+    title: "Database & Data Validation",
     skills: [
-      "Draw.io", "Visual Paradigm", "ClickUp", "Tableau", "Power BI", "SPSS", "Odoo ERP"
+      "MySQL", "PostgreSQL", "SQL Server", "Data Validation"
+    ]
+  },
+  {
+    title: "Tools & Reporting",
+    skills: [
+      "ClickUp", "Draw.io", "Visual Paradigm", "Tableau", "Power BI", "Microsoft Office"
     ]
   }
 ];
