@@ -75,13 +75,13 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-[#0a0e27] dark:via-[#0f172a] dark:to-[#000000]">
+    <section id="home" className="relative flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-[#0a0e27] dark:via-[#0f172a] dark:to-[#000000]">
       {/* Backdrop: real BPMN/ERD notation instead of generic floating icons */}
       {isDark ? <HeroAsciiDots /> : <HeroBackgroundPattern />}
 
       {/* Main Content Container — padded to clear the fixed header */}
       <div
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full"
+        className="relative z-10 max-w-6xl mx-auto w-full"
         style={{ paddingTop: 'clamp(96px, 13vw, 150px)', paddingBottom: 'clamp(64px, 8vw, 96px)' }}
       >
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">

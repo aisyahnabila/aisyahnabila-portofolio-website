@@ -76,11 +76,11 @@ export function Header({ isDark, toggleTheme, page, onNavigate }: HeaderProps) {
   ];
 
   return (
-    <header className={`fixed top-0 inset-x-0 w-full z-50 transition-all duration-500 ${isScrolled
+    <header className={`fixed top-0 inset-x-0 w-full z-50 px-4 sm:px-6 lg:px-8 transition-all duration-500 ${isScrolled
       ? 'bg-background/70 backdrop-blur-xl supports-[backdrop-filter]:bg-background/50 border-b border-border/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)]'
       : 'bg-transparent border-b border-transparent'
       }`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <div className="relative pointer-events-auto w-full flex justify-between items-center py-3">
           <motion.button
             type="button"

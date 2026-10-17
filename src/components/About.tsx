@@ -68,7 +68,7 @@ export function About({ onViewDetails }: AboutProps) {
               <motion.div
                 key={index}
                 className="grid gap-4"
-                style={{ gridTemplateColumns: 'minmax(0, 7.5rem) 1fr' }}
+                style={{ gridTemplateColumns: 'minmax(0, clamp(7.5rem, 30vw, 10rem)) 1fr' }}
                 initial={{ opacity: 0, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
