@@ -62,7 +62,7 @@ export function ResumeDialog({ open, onOpenChange, triggerId }: ResumeDialogProp
                 >
                   <span className="min-w-0">
                     <span className="block font-semibold text-foreground">{role}</span>
-                    <span className="block text-xs text-muted-foreground">PDF · opens in a new tab</span>
+                    <span className="block text-xs text-muted-foreground">PDF</span>
                   </span>
                   <ExternalLink
                     className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-primary transition-colors duration-200"

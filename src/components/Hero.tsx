@@ -166,6 +166,27 @@ export function Hero() {
                     />
                   ))}
                 </mask>
+                {/* Inverse of hero-pixel-reveal: hides the illustration tile-by-tile as the photo
+                    takes over, so both images sit on the transparent hero backdrop */}
+                <mask id="hero-pixel-hide" maskContentUnits="objectBoundingBox">
+                  {pixelCells.map(({ delay, x, y, width, height }, i) => (
+                    <rect
+                      key={i}
+                      x={x}
+                      y={y}
+                      width={width}
+                      height={height}
+                      fill="white"
+                      style={{
+                        opacity: showRealPhoto ? 0 : 1,
+                        transitionProperty: 'opacity',
+                        transitionDuration: '1ms',
+                        transitionTimingFunction: 'linear',
+                        transitionDelay: shouldReduceMotion ? '0ms' : `${delay + PIXEL_SWAP_DELAY_S}s`,
+                      }}
+                    />
+                  ))}
+                </mask>
                 <mask id="hero-pixel-flash" maskContentUnits="objectBoundingBox">
                   {pixelCells.map(({ delay, x, y, width, height }, i) => (
                     <rect
@@ -214,13 +235,11 @@ export function Hero() {
                     src={profileImage}
                     alt="Aisyah Nabila - illustrated avatar"
                     className="absolute inset-0 w-full h-full object-cover"
-                    style={{ objectPosition: '50% 15%' }}
-                  />
-
-                  {/* Opaque backing so the transparent edges of the photo cutout don't let the illustration bleed through */}
-                  <div
-                    className="absolute inset-0 bg-background pointer-events-none"
-                    style={{ maskImage: 'url(#hero-pixel-reveal)', WebkitMaskImage: 'url(#hero-pixel-reveal)' }}
+                    style={{
+                      objectPosition: '50% 15%',
+                      maskImage: 'url(#hero-pixel-hide)',
+                      WebkitMaskImage: 'url(#hero-pixel-hide)',
+                    }}
                   />
 
                   {/* Real photo — a single image, revealed tile-by-tile through the mask (no duplicated/clipped copies) */}
