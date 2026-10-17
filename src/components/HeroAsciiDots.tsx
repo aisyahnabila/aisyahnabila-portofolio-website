@@ -19,23 +19,28 @@ export function useIsDarkMode() {
 const RAMP = [" ", "·", "·", ":", "+"];
 const MAX_CELLS = 6000;
 const FRAME_MS = 1000 / 30;
-const GRAY = "148,163,184";
-const BLUE = "59,130,246";
 
 /**
  * Slow, self-driven field of ASCII dots (no pointer input). Each cell's
  * character and alpha come from a sum of drifting sine waves; a second slow
- * wave tints a few cells with the logo blue. Pauses when the tab is hidden
- * or the hero is off-screen, and renders a single static frame under
- * prefers-reduced-motion.
+ * wave tints a few cells with the logo blue. Colours come from the theme
+ * tokens (--muted-foreground, --primary), so the same field works in light
+ * and dark mode. Pauses when the tab is hidden or the hero is off-screen,
+ * and renders a single static frame under prefers-reduced-motion.
  */
 export function HeroAsciiDots() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // re-run the effect on theme change so the canvas picks up the new tokens
+  const isDark = useIsDarkMode();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
+
+    const tokens = getComputedStyle(document.documentElement);
+    const dotColor = tokens.getPropertyValue("--muted-foreground").trim() || "#94a3b8";
+    const tintColor = tokens.getPropertyValue("--primary").trim() || "#3b82f6";
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let width = 0;
@@ -68,10 +73,12 @@ export function HeroAsciiDots() {
           if (ch === " ") continue;
           const tint = Math.sin(x * 0.3 - y * 0.25 + t * 0.15) > 0.72;
           const alpha = 0.05 + n * 0.17;
-          ctx.fillStyle = `rgba(${tint ? BLUE : GRAY},${tint ? alpha * 1.3 : alpha})`;
+          ctx.fillStyle = tint ? tintColor : dotColor;
+          ctx.globalAlpha = tint ? alpha * 1.3 : alpha;
           ctx.fillText(ch, c * cell + cell / 2, r * cell + cell / 2);
         }
       }
+      ctx.globalAlpha = 1;
     };
 
     const loop = (now: number) => {
@@ -124,7 +131,7 @@ export function HeroAsciiDots() {
       document.removeEventListener("visibilitychange", sync);
       motionQuery.removeEventListener("change", sync);
     };
-  }, []);
+  }, [isDark]);
 
   return (
     <canvas

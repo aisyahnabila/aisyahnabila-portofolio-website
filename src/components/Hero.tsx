@@ -4,9 +4,9 @@ import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import profileImage from "../assets/animation_profile.jpg";
 import realPhoto from "../assets/photo-profile.png";
-import { HeroBackgroundPattern } from "./HeroBackgroundPattern";
-import { HeroAsciiDots, useIsDarkMode } from "./HeroAsciiDots";
-import { WHATSAPP_URL, EMAIL_MAILTO } from "../lib/contact";
+import { HeroAsciiDots } from "./HeroAsciiDots";
+import { EMAIL_MAILTO } from "../lib/contact";
+import { ResumeDialog } from "./ResumeDialog";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const PIXEL_GRID = 8;
@@ -30,9 +30,9 @@ const textItem = {
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
-  const isDark = useIsDarkMode();
   const [isHovering, setIsHovering] = useState(false);
   const [isTapped, setIsTapped] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   const showRealPhoto = isHovering || isTapped;
 
   // Touch devices fire a synthetic mouseenter on tap but rarely a timely mouseleave,
@@ -76,8 +76,8 @@ export function Hero() {
 
   return (
     <section id="home" className="relative flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-[#0a0e27] dark:via-[#0f172a] dark:to-[#000000]">
-      {/* Backdrop: real BPMN/ERD notation instead of generic floating icons */}
-      {isDark ? <HeroAsciiDots /> : <HeroBackgroundPattern />}
+      {/* Backdrop: drifting ASCII dots, coloured from the theme tokens */}
+      <HeroAsciiDots />
 
       {/* Main Content Container — padded to clear the fixed header */}
       <div
@@ -122,13 +122,17 @@ export function Hero() {
                 View Projects
               </Button>
               <Button
+                id="resume-trigger"
                 variant="outline"
-                onClick={() => window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer')}
+                onClick={() => setIsResumeOpen(true)}
+                aria-haspopup="dialog"
+                aria-expanded={isResumeOpen}
                 className="border-2 border-border text-foreground hover:bg-muted px-6 sm:px-8 py-3 sm:py-4 text-base font-semibold rounded-xl transition-colors duration-200"
               >
-                Book a Project Chat
+                Choose My Resume
               </Button>
             </motion.div>
+            <ResumeDialog open={isResumeOpen} onOpenChange={setIsResumeOpen} triggerId="resume-trigger" />
           </motion.div>
 
           {/* Right Side - Profile Photo (circular avatar; hover on desktop / tap on mobile reveals the real photo) */}
